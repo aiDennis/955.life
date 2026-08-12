@@ -1,0 +1,139 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { locales, type Locale } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: Locale;
+  jsonLd?: string;
+}
+const { title, description, lang = 'zh-CN', jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+
+// hreflang alternate：同页 8 语言 URL（/zh-cn/what-is-955/ → /en/what-is-955/）
+const pathParts = Astro.url.pathname.split('/').filter(Boolean); // [zh-cn, what-is-955]
+const slug = pathParts.slice(1).join('/');
+const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- hreflang：8 语言互指 + x-default -->
+    {locales.map((l) => <link rel="alternate" hreflang={l} href={altUrl(l)} />)}
+    <link rel="alternate" hreflang="x-default" href={altUrl('zh-CN')} />
+
+    <!-- 外部统计域名预连接 -->
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://a.w3to.dev" crossorigin />
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="955.life" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang} />
+    <meta property="og:image" content="https://955.life/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="theme-color" content="#F97316" />
+
+    <!-- Matomo 统计 -->
+    <script is:inline>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://a.w3to.dev/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '15']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DW7JKS4EXW"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DW7JKS4EXW');
+    </script>
+
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
+
+    <!-- Organization 全局主体（E-E-A-T：publisher/author 引用此实体） -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Organization',
+      name: '955.life',
+      url: 'https://955.life/',
+      logo: 'https://955.life/favicon.svg',
+      sameAs: ['https://github.com/aiDennis/955.life'],
+    })}></script>
+
+    <script is:inline>
+      // Theme init — avoid flash of wrong theme
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var dark = stored
+            ? stored === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+          var tc = document.querySelector('meta[name="theme-color"]');
+          if (tc) tc.setAttribute('content', dark ? '#0B1220' : '#F97316');
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <Header lang={lang} />
+    <main class="flex-1">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+
+    <!-- 全局滚动渐入（reveal）：所有页面生效，尊重 prefers-reduced-motion -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var els = document.querySelectorAll('.reveal');
+        if (reduced) {
+          els.forEach(function (el) { el.classList.add('visible'); });
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        els.forEach(function (el) { io.observe(el); });
+      });
+    </script>
+  </body>
+</html>

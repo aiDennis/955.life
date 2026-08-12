@@ -1,0 +1,128 @@
+---
+import Base from '../../layouts/Base.astro';
+import ChartCompare from '../../components/ChartCompare.astro';
+import NewsList from '../../components/NewsList.astro';
+import Icon from '../../components/Icon.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params as { lang: Locale };
+const p = (k: string) => t(lang, k);
+
+// Mission chips — 8 语言本地化
+const chips: Record<Locale, string[]> = {
+  'zh-CN': ['法律依据', '全球实践', '955 公司', '数据对比'],
+  'zh-Hant': ['法律依據', '全球實踐', '955 公司', '數據對比'],
+  en: ['Legal basis', 'Global practice', '955 companies', 'Data'],
+  ja: ['法的根拠', '世界の実践', '955企業', 'データ比較'],
+  ko: ['법적 근거', '세계 사례', '955 기업', '데이터 비교'],
+  de: ['Rechtsgrundlage', 'Globale Praxis', '955-Unternehmen', 'Daten'],
+  es: ['Base legal', 'Práctica global', 'Empresas 955', 'Datos'],
+  fr: ['Bases légales', 'Pratique mondiale', 'Entreprises 955', 'Données'],
+};
+
+const webSiteJsonLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: '955.life',
+  url: 'https://955.life/',
+  description: t(lang, 'seo_home_d'),
+  inLanguage: lang,
+});
+---
+
+<Base title={t(lang, 'seo_home_t')} description={t(lang, 'seo_home_d')} lang={lang} jsonLd={webSiteJsonLd}>
+  <!-- Hero -->
+  <section class="relative overflow-hidden">
+    <div class="absolute inset-0 -z-10" style="background:
+      radial-gradient(60rem 30rem at 15% 0%, var(--brand-glow), transparent 60%),
+      radial-gradient(50rem 26rem at 90% 10%, rgba(30,42,74,0.12), transparent 55%),
+      linear-gradient(180deg, var(--bg-soft), var(--bg));"
+    ></div>
+    <div class="mx-auto max-w-6xl px-4 pt-20 pb-16 md:pt-28 md:pb-24 text-center">
+      <span class="chip !cursor-default mb-6" style="color: var(--brand); border-color: color-mix(in srgb, var(--brand) 35%, transparent);">
+        <Icon name="spark" size={14} /> {p('hero_badge')}
+      </span>
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.08]">
+        {p('hero_title')}<br />
+        <span class="text-gradient">955 · Work-Life Balance</span>
+      </h1>
+      <p class="mt-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed whitespace-pre-line" style="color: var(--ink-soft);">
+        {p('hero_sub')}
+      </p>
+      <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
+        <a href={`/${lang}/what-is-955/`} class="btn-primary magnetic">{p('hero_cta1')}</a>
+        <a href={`/${lang}/companies/`} class="btn-ghost magnetic">{p('hero_cta2')}</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stat band -->
+  <section class="mx-auto max-w-6xl px-4 -mt-2">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      {[
+        { v: p('stat1_v'), l: p('stat1_l') },
+        { v: p('stat2_v'), l: p('stat3_l') },
+        { v: p('stat3_v'), l: p('stat2_l') },
+        { v: p('stat4_v'), l: p('stat4_l') },
+      ].map((s, i) => (
+        <div class="glass p-4 md:p-5 text-center reveal" style={`animation-delay: ${i * 80}ms`}>
+          <p class="text-2xl md:text-3xl font-black text-gradient tabular-nums whitespace-nowrap">{s.v}</p>
+          <p class="mt-1.5 text-xs font-medium leading-snug" style="color: var(--ink-soft);">{s.l}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Mission -->
+  <section class="mx-auto max-w-3xl px-4 py-16 text-center reveal">
+    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">{p('sec_mission_t')}</h2>
+    <p class="mt-4 text-base leading-relaxed" style="color: var(--ink-soft);">{p('sec_mission_d')}</p>
+    <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs font-semibold" style="color: var(--ink-soft);">
+      <span class="chip !cursor-default"><Icon name="scale" size={14} /> {chips[lang][0]}</span>
+      <span class="chip !cursor-default"><Icon name="globe" size={14} /> {chips[lang][1]}</span>
+      <span class="chip !cursor-default"><Icon name="building" size={14} /> {chips[lang][2]}</span>
+      <span class="chip !cursor-default"><Icon name="chart" size={14} /> {chips[lang][3]}</span>
+    </div>
+  </section>
+
+  <!-- Chart -->
+  <ChartCompare lang={lang} />
+
+  <!-- Latest news -->
+  <section class="mx-auto max-w-6xl px-4 py-10">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">{p('sec_latest_t')}</h2>
+        <p class="mt-1 text-sm" style="color: var(--ink-soft);">{p('news_d')}</p>
+      </div>
+      <a href={`/${lang}/news/`} class="text-sm font-semibold whitespace-nowrap" style="color: var(--brand);">{p('sec_latest_more')} <Icon name="arrow" size={14} className="inline-block align-[-2px]" /></a>
+    </div>
+    <NewsList lang={lang} limit={3} />
+  </section>
+
+  <!-- CTA -->
+  <section class="mx-auto max-w-6xl px-4 py-14">
+    <div class="glass p-10 md:p-14 text-center reveal" style="background: linear-gradient(120deg, var(--bg-soft), color-mix(in srgb, var(--brand-glow) 60%, var(--surface)));">
+      <h2 class="text-2xl md:text-4xl font-black tracking-tight">{p('cta_t')}</h2>
+      <p class="mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed" style="color: var(--ink-soft);">{p('cta_d')}</p>
+      <a href="https://github.com/aiDennis/955.life" target="_blank" rel="noopener" class="btn-primary magnetic mt-6">{p('cta_btn')} <Icon name="external" size={15} /></a>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Magnetic buttons（reveal 由 Base 全局脚本处理）
+    document.querySelectorAll('.magnetic').forEach((el) => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      el.addEventListener('mousemove', (e) => {
+        const r = el.getBoundingClientRect();
+        const dx = e.clientX - (r.left + r.width / 2);
+        const dy = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate(${dx * 0.08}px, ${dy * 0.1}px)`;
+      });
+      el.addEventListener('mouseleave', () => (el.style.transform = ''));
+    });
+  </script>
+</Base>

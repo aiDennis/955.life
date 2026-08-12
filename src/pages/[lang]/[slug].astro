@@ -1,0 +1,140 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { t, type Locale } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('docs');
+  return docs.map((entry) => {
+    const [lang, ...rest] = entry.id.split('/');
+    return {
+      params: { lang, slug: rest.join('/').replace(/\.md$/, '') },
+      props: { entry, lang },
+    };
+  });
+}
+
+const { entry, lang } = Astro.props as { entry: any; lang: Locale };
+const { Content } = await render(entry);
+const p = (k: string) => t(lang, k);
+const slugPath = entry.id.split('/').slice(1).join('/').replace(/\.md$/, '');
+const canonical = `https://955.life/${lang}/${slugPath}/`;
+const siteUrl = 'https://955.life/';
+
+// ---- 相关阅读：同语言，tags 匹配优先，order 兜底 ----
+const allDocs = await getCollection('docs');
+const sameLang = allDocs
+  .filter((d) => d.id.startsWith(`${lang}/`))
+  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const myTags = new Set((entry.data.tags ?? []) as string[]);
+const related = (() => {
+  const scored = sameLang
+    .filter((d) => d.id !== entry.id)
+    .map((d) => ({ d, score: ((d.data.tags ?? []) as string[]).filter((x) => myTags.has(x)).length }))
+    .sort((a, b) => b.score - a.score || (a.d.data.order ?? 99) - (b.d.data.order ?? 99));
+  const matched = scored.filter((x) => x.score > 0).slice(0, 3);
+  if (matched.length >= 2) return matched.map((x) => x.d);
+  // tag 匹配不足 → 按 order 前后补
+  const idx = sameLang.findIndex((d) => d.id === entry.id);
+  const fallback = sameLang.filter((d) => d.id !== entry.id);
+  const ordered = [
+    ...fallback.filter((d) => Math.abs((d.data.order ?? 99) - (entry.data.order ?? 99)) === 1),
+    ...fallback,
+  ];
+  return Array.from(new Map([...matched.map((x) => [x.d.id, x.d]), ...ordered.map((d) => [d.id, d])].map((x) => [x[0], x[1]])).values()).slice(0, 3);
+})();
+const relPath = (d: any) => d.id.split('/').slice(1).join('/').replace(/\.md$/, '');
+
+// ---- Schema 组装（Article + FAQPage + BreadcrumbList）----
+const schemas: any[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: entry.data.title,
+    description: entry.data.description,
+    datePublished: entry.data.date,
+    dateModified: entry.data.updated ?? entry.data.date,
+    inLanguage: lang,
+    mainEntityOfPage: canonical,
+    author: { '@type': 'Organization', name: '955.life', url: siteUrl },
+    publisher: { '@type': 'Organization', name: '955.life', url: siteUrl, logo: { '@type': 'ImageObject', url: 'https://955.life/favicon.svg' } },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: p('nav_home'), item: `${siteUrl}${lang}/` },
+      { '@type': 'ListItem', position: 2, name: entry.data.title, item: canonical },
+    ],
+  },
+];
+if (entry.data.faq?.length) {
+  schemas.push({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entry.data.faq.map((f: { q: string; a: string }) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: f.a },
+    })),
+  });
+}
+const jsonLd = JSON.stringify(schemas);
+---
+
+<Base title={`${entry.data.title} | 955.life`} description={entry.data.description} lang={lang} jsonLd={jsonLd}>
+  <article class="mx-auto max-w-3xl px-4 pt-10 pb-12">
+    <a href={`/${lang}/`} class="text-sm font-semibold" style="color: var(--brand);">← {p('back')}</a>
+    <h1 class="mt-4 text-3xl md:text-4xl font-black tracking-tight leading-tight">{entry.data.title}</h1>
+    <p class="mt-3 text-base leading-relaxed" style="color: var(--ink-soft);">{entry.data.description}</p>
+    <div class="mt-4 flex flex-wrap items-center gap-3 text-xs" style="color: var(--ink-soft);">
+      <time class="font-semibold">{p('updated')} {entry.data.updated ?? entry.data.date}</time>
+      {
+        entry.data.tags?.map((tag: string) => (
+          <span class="chip !cursor-default">{tag}</span>
+        ))
+      }
+    </div>
+    <hr class="my-8" style="border-color: var(--line);" />
+    <div class="prose-doc text-[15px]">
+      <Content />
+    </div>
+
+    {
+      entry.data.faq?.length > 0 && (
+        <>
+          <hr class="my-10" style="border-color: var(--line);" />
+          <h2 class="text-xl font-extrabold mb-5">{p('faq_t')}</h2>
+          <div class="space-y-4">
+            {
+              entry.data.faq.map((f: { q: string; a: string }) => (
+                <div class="glass p-5">
+                  <h3 class="font-bold text-[15px] mb-2">{f.q}</h3>
+                  <p class="text-sm leading-7" style="color: var(--ink-soft);">{f.a}</p>
+                </div>
+              ))
+            }
+          </div>
+        </>
+      )
+    }
+
+    {
+      related.length > 0 && (
+        <div class="mt-10 pt-8 border-t" style="border-color: var(--line);">
+          <h2 class="text-lg font-extrabold mb-4">{p('related_t')}</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {
+              related.map((r) => (
+                <a href={`/${lang}/${relPath(r)}/`} class="glass p-4 hover:underline">
+                  <p class="text-sm font-semibold" style="color: var(--ink);">{r.data.title}</p>
+                  <p class="mt-1 text-xs leading-5" style="color: var(--ink-soft);">{r.data.description}</p>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      )
+    }
+  </article>
+</Base>

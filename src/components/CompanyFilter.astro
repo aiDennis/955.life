@@ -1,0 +1,165 @@
+---
+import companies from '../data/companies.json';
+import { t, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; }
+const { lang } = Astro.props;
+const p = (k: string) => t(lang, k);
+
+// industry names in 8 locales
+const industryNames: Record<Locale, Record<string, string>> = {
+  'zh-CN': { tech: '互联网/软件', hardware: '硬件/半导体', finance: '金融', gaming: '游戏', manufacturing: '制造', retail: '消费零售', consulting: '咨询' },
+  'zh-Hant': { tech: '互聯網/軟件', hardware: '硬件/半導體', finance: '金融', gaming: '遊戲', manufacturing: '製造', retail: '消費零售', consulting: '諮詢' },
+  en: { tech: 'Internet/Software', hardware: 'Hardware/Semiconductor', finance: 'Finance', gaming: 'Gaming', manufacturing: 'Manufacturing', retail: 'Retail', consulting: 'Consulting' },
+  ja: { tech: 'インターネット/ソフトウェア', hardware: 'ハードウェア/半導体', finance: '金融', gaming: 'ゲーム', manufacturing: '製造', retail: '小売', consulting: 'コンサル' },
+  ko: { tech: '인터넷/소프트웨어', hardware: '하드웨어/반도체', finance: '금융', gaming: '게임', manufacturing: '제조', retail: '소매', consulting: '컨설팅' },
+  de: { tech: 'Internet/Software', hardware: 'Hardware/Halbleiter', finance: 'Finanzen', gaming: 'Spiele', manufacturing: 'Fertigung', retail: 'Einzelhandel', consulting: 'Beratung' },
+  es: { tech: 'Internet/Software', hardware: 'Hardware/Semiconductores', finance: 'Finanzas', gaming: 'Juegos', manufacturing: 'Manufactura', retail: 'Comercio', consulting: 'Consultoría' },
+  fr: { tech: 'Internet/Logiciel', hardware: 'Matériel/Semi-conducteurs', finance: 'Finance', gaming: 'Jeux', manufacturing: 'Fabrication', retail: 'Commerce', consulting: 'Conseil' },
+};
+const cities = [...new Set(companies.flatMap((c) => c.cities))].sort();
+const industries = Object.keys(industryNames[lang] ?? industryNames['zh-CN']);
+// 城市 8 语言显示名（zh-CN 键；筛选逻辑仍用原始值）
+const cityNames: Record<Locale, Record<string, string>> = {
+  'zh-CN': Object.fromEntries(cities.map((c) => [c, c])),
+  'zh-Hant': { 北京: '北京', 上海: '上海', 广州: '廣州', 深圳: '深圳', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '廈門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港' },
+  en: { 北京: 'Beijing', 上海: 'Shanghai', 广州: 'Guangzhou', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
+  ja: { 北京: '北京', 上海: '上海', 广州: '広州', 深圳: '深セン', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '厦門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港' },
+  ko: { 北京: '베이징', 上海: '상하이', 广州: '광저우', 深圳: '선전', 杭州: '항저우', 成都: '청두', 南京: '난징', 苏州: '쑤저우', 武汉: '우한', 西安: '시안', 厦门: '샤먼', 合肥: '허페이', 无锡: '우시', 大连: '다롄', 香港: '홍콩' },
+  de: { 北京: 'Peking', 上海: 'Shanghai', 广州: 'Kanton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hongkong' },
+  es: { 北京: 'Pekín', 上海: 'Shanghái', 广州: 'Cantón', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankín', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
+  fr: { 北京: 'Pékin', 上海: 'Shanghai', 广州: 'Canton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankin', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
+};
+const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ?? c;
+---
+
+<section class="mx-auto max-w-6xl px-4 pt-10 pb-16">
+  <div class="text-center mb-8 reveal">
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">{p('co_t')}</h1>
+    <p class="mt-3 max-w-2xl mx-auto text-sm leading-relaxed" style="color: var(--ink-soft);">{p('co_d')}</p>
+  </div>
+
+  <!-- Filter bar -->
+  <div class="glass p-5 mb-6 reveal">
+    <div class="flex flex-wrap items-center gap-3">
+      <input
+        id="co-search"
+        type="search"
+        placeholder={p('co_search')}
+        class="flex-1 min-w-52 px-4 py-2.5 rounded-full border outline-none text-sm transition-colors focus:border-orange-400"
+        style="border-color: var(--line); background: var(--bg); color: var(--ink);"
+      />
+      <button id="co-query" type="button" class="btn-primary text-sm">{p('co_query')}</button>
+    </div>
+
+    <div class="mt-4">
+      <p class="text-xs font-semibold mb-2" style="color: var(--ink-soft);">{p('co_city')}</p>
+      <div id="co-cities" class="flex flex-wrap gap-2">
+        <button class="chip active" data-city="">{p('co_all')}</button>
+        {cities.map((c) => <button class="chip" data-city={c}>{cityNamesOf(c)}</button>)}
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <p class="text-xs font-semibold mb-2" style="color: var(--ink-soft);">{p('co_industry')}</p>
+      <div id="co-industries" class="flex flex-wrap gap-2">
+        <button class="chip active" data-ind="">{p('co_all')}</button>
+        {industries.map((ind) => <button class="chip" data-ind={ind}>{(industryNames[lang] ?? industryNames['zh-CN'])[ind]}</button>)}
+      </div>
+    </div>
+  </div>
+
+  <p id="co-count" class="text-sm mb-4 font-semibold" style="color: var(--ink-soft);" aria-live="polite"></p>
+
+  <!-- SSR 预渲染全部公司（爬虫可见；JS 接管筛选后重绘） -->
+  <div id="co-grid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-live="polite">
+    {companies.map((c) => (
+      <article class="glass p-4" role="listitem">
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="font-bold text-[15px]">{c.name}</h3>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0" style="border:1px solid var(--line); color:var(--ink-soft);">{(industryNames[lang] ?? industryNames['zh-CN'])[c.industry] ?? c.industry}</span>
+        </div>
+        <p class="mt-1.5 text-xs inline-flex items-center gap-1" style="color: var(--ink-soft);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.1-6-10a6 6 0 1 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg> {c.cities.map((x) => cityNamesOf(x)).join(' · ')}</p>
+      </article>
+    ))}
+  </div>
+  <div id="co-empty" class="hidden text-center py-12 text-sm" style="color: var(--ink-soft);">{p('co_empty')}</div>
+
+  <p class="mt-8 text-xs" style="color: var(--ink-soft); opacity: 0.75;">
+    {p('co_source')} · {p('co_legend')}
+  </p>
+</section>
+
+<script type="application/json" id="co-data" set:html={JSON.stringify(companies)}></script>
+<script type="application/json" id="co-ind" set:html={JSON.stringify(industryNames[lang] ?? industryNames['zh-CN'])}></script>
+<script type="application/json" id="co-city" set:html={JSON.stringify(cityNames[lang] ?? cityNames['zh-CN'])}></script>
+<script type="application/json" id="co-labels" set:html={JSON.stringify({ count: p('co_count') })}></script>
+
+<script>
+  const listEl = document.getElementById('co-grid');
+  const emptyEl = document.getElementById('co-empty');
+  const countEl = document.getElementById('co-count');
+  const searchEl = document.getElementById('co-search');
+  const data = JSON.parse(document.getElementById('co-data').textContent);
+  const indNames = JSON.parse(document.getElementById('co-ind').textContent);
+  const cityNames = JSON.parse(document.getElementById('co-city').textContent);
+  const labels = JSON.parse(document.getElementById('co-labels').textContent);
+  let city = '';
+  let ind = '';
+  let q = '';
+
+  function esc(s: string): string {
+    return String(s).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]!));
+  }
+
+  function render() {
+    const rows = data.filter((c) => {
+      const okCity = !city || c.cities.includes(city);
+      const okInd = !ind || c.industry === ind;
+      const okQ = !q || c.name.toLowerCase().includes(q.toLowerCase());
+      return okCity && okInd && okQ;
+    });
+    countEl.textContent = `${rows.length} ${labels.count}`;
+    emptyEl.classList.toggle('hidden', rows.length > 0);
+    listEl.innerHTML = rows
+      .map(
+        (c) => `<article class="glass p-4" role="listitem">
+          <div class="flex items-start justify-between gap-2">
+            <h3 class="font-bold text-[15px]">${esc(c.name)}</h3>
+            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0" style="border:1px solid var(--line); color:var(--ink-soft);">${esc(indNames[c.industry] ?? c.industry)}</span>
+          </div>
+          <p class="mt-1.5 text-xs inline-flex items-center gap-1" style="color: var(--ink-soft);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.1-6-10a6 6 0 1 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg> ${c.cities.map((x) => esc(cityNames[x] ?? x)).join(' · ')}</p>
+        </article>`
+      )
+      .join('');
+  }
+
+  document.querySelectorAll('#co-cities .chip').forEach((b) =>
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#co-cities .chip').forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      city = b.dataset.city;
+      render();
+    })
+  );
+  document.querySelectorAll('#co-industries .chip').forEach((b) =>
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#co-industries .chip').forEach((x) => x.classList.remove('active'));
+      b.classList.add('active');
+      ind = b.dataset.ind;
+      render();
+    })
+  );
+  searchEl.addEventListener('input', (e) => {
+    q = e.target.value.trim();
+    render();
+  });
+  document.getElementById('co-query')?.addEventListener('click', function () {
+    render();
+    if (listEl.children.length > 0) {
+      listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      searchEl.focus();
+    }
+  });
+  render();
+</script>

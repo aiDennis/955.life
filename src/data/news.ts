@@ -1,0 +1,136 @@
+// 新闻动态（2025-2026，来源为公开报道，MVP 阶段 zh/en 双语，其他语言回退）
+export interface NewsItem {
+  date: string;
+  titleZh: string;
+  titleEn: string;
+  descZh: string;
+  descEn: string;
+  source: string;
+  sourceKey: string;
+  tag: string;
+  tagKey: string;
+}
+
+export const newsItems: NewsItem[] = [
+  {
+    date: '2026-08',
+    titleZh: '河南六部门发文：领导干部带头休假，全员"应休尽休"',
+    titleEn: 'Henan: leaders must take leave first, all staff rest in full',
+    descZh: '河南省委组织部等六部门印发《关于进一步推动落实职工带薪错峰休假的通知》：单位主要负责人为第一责任人、领导干部带头休假，推动全员应休尽休、休满休足；无法休假按日工资收入 300% 支付；试行"周五半天+周末+年假"短途度假模式。天津、云南、贵州等省份同步跟进，话题登上微博热搜。',
+    descEn: 'Six Henan departments issued rules on paid leave: unit heads are first responsible and leaders must take leave first; untaken leave is paid at 300% of daily wage; trials of "half-day Friday + weekend + annual leave" getaways. Tianjin, Yunnan and Guizhou followed; topic trended on Weibo.',
+    source: '河南省委组织部等',
+    sourceKey: 'henan',
+    tag: '政策',
+    tagKey: 'policy',
+  },
+  {
+    date: '2026-07',
+    titleZh: '四川农业公司暑期"上四休三"：周五到周日连休三天',
+    titleEn: 'Sichuan agri-tech firm runs 4-on-3-off for summer 2026',
+    descZh: '四川中科农创农业科技在 2026 年 7-8 月暑期实行"上四休三"：周一至周四上班、周五到周日连休三天，基本薪资与各项福利不变。',
+    descEn: 'Sichuan Zhongke Nongchuang Agro-Tech adopted a 4-on-3-off schedule for summer 2026 — Mon-Thu work, Fri-Sun off — with pay and benefits unchanged.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '四天工作制',
+    tagKey: '4day',
+  },
+  {
+    date: '2026-02',
+    titleZh: '四川一企业实行四天工作制：周五带薪休假，薪酬福利不变',
+    titleEn: 'Sichuan company adopts 4-day workweek: paid Friday off, pay unchanged',
+    descZh: '四川京元集成电路宣布自 2026 年 2 月 1 日起实行每周四天工作制，法定双休不变，周五为带薪休假；内部试点两个月显示效率未降、出错率降低，消息发布后收到数百份简历投递。',
+    descEn: 'Sichuan Jingyuan IC announced a 4-day workweek from Feb 1, 2026 — paid Friday off, unchanged pay. Two-month pilot showed no drop in efficiency and fewer errors; hundreds of applications followed.',
+    source: '百姓关注',
+    sourceKey: 'baixing',
+    tag: '四天工作制',
+    tagKey: '4day',
+  },
+  {
+    date: '2026-01',
+    titleZh: '长城汽车正式取消"大小周"：全面落实周末双休',
+    titleEn: 'Great Wall Motor abolishes "big/small weeks" for full weekends',
+    descZh: '长城汽车自 2026 年 1 月起正式取消"大小周"、全面实行周末双休，覆盖全体员工，休假制度完成第四次迭代。背景是车企告别"内卷式"加班：2025 年多家车企月均加班 70-100 小时，欧盟《反强迫劳动法案》亦将倒逼出口合规。',
+    descEn: 'Great Wall Motor abolished its "big/small week" schedule for standard weekends from Jan 2026, covering all staff — the fourth overhaul of its leave system, as automakers exit the overtime rat race and EU forced-labour rules loom.',
+    source: '中国经济网',
+    sourceKey: 'ceweekly',
+    tag: '双休',
+    tagKey: 'weekend',
+  },
+  {
+    date: '2026-01',
+    titleZh: '吉林两会建议推行 4.5 天工作制，冲上热搜',
+    titleEn: 'Jilin CPPCC suggests 4.5-day workweek, trends online',
+    descZh: '吉林省政协委员建议在义务教育阶段学校和企事业单位试行每周四天半工作日（周五下午放假），以促进周末短途旅游消费，话题引发全网热议。',
+    descEn: 'A Jilin CPPCC member suggested trialing a 4.5-day workweek (Friday afternoon off) in schools and enterprises to boost weekend tourism, sparking nationwide discussion.',
+    source: '中青报',
+    sourceKey: 'cyol',
+    tag: '4.5天工作制',
+    tagKey: '4.5day',
+  },
+  {
+    date: '2026-01',
+    titleZh: '欧盟《反强迫劳动法案》：每周超 40 小时加班将被禁入欧盟',
+    titleEn: 'EU Forced Labour Regulation: 40+ hour weeks could be barred from EU',
+    descZh: '欧盟《反强迫劳动法案》将于 2027 年底实施，出口欧盟产品的任何环节不得涉及强迫劳动，其中包括每周超过 40 小时的加班（即使员工自愿也不允许），成为中国制造工时合规的新外部约束。',
+    descEn: 'The EU Forced Labour Regulation, effective late 2027, bans any product made with weekly overtime beyond 40 hours — even voluntary — adding external compliance pressure on working hours in Chinese manufacturing.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '政策',
+    tagKey: 'policy',
+  },
+  {
+    date: '2025-12',
+    titleZh: '车企集体"减负"：比亚迪、宁德时代涨薪，奇瑞"周末禁会"',
+    titleEn: 'BYD, CATL raise pay; Chery bans weekend meetings',
+    descZh: '2025 年 12 月，比亚迪、宁德时代相继宣布涨薪，奇瑞推行"周末禁会"，叠加长城落实双休，多家车企密集告别"内卷式"加班，被视作行业转向高质量发展的信号。',
+    descEn: 'In Dec 2025, BYD and CATL announced pay raises and Chery banned weekend meetings; along with Great Wall\'s standard weekends, automakers are moving away from overwork as the industry shifts to quality-driven growth.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '车企减负',
+    tagKey: 'auto',
+  },
+  {
+    date: '2025-07',
+    titleZh: '广东欧派家居：全员每周五下午 4:15 提前下班',
+    titleEn: 'Guangdong OPPEIN lets staff leave at 4:15 PM every Friday',
+    descZh: '欧派家居自 2025 年 7 月起全体员工每周五下午 4 点 15 分可提前下班，被网友称为"神仙操作"。',
+    descEn: 'OPPEIN Home allowed all employees to leave at 4:15 PM on Fridays from July 2025 — widely praised online.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '弹性休假',
+    tagKey: 'flex',
+  },
+  {
+    date: '2025',
+    titleZh: '多省份发文鼓励"2.5 天休假"模式',
+    titleEn: 'Multiple provinces encourage 2.5-day weekend policies',
+    descZh: '河北、江西、浙江等省份陆续出台文件，鼓励有条件的地方和单位实行 2.5 天休假，通常与提振消费、旅游产业政策绑定。',
+    descEn: 'Hebei, Jiangxi, Zhejiang and others issued documents encouraging 2.5-day weekends where conditions allow, often tied to tourism-consumption policy.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '2.5天休假',
+    tagKey: '2.5day',
+  },
+  {
+    date: '2025-01',
+    titleZh: '广州公司实行"上四休三"：每周工作四天休息三天',
+    titleEn: 'Guangzhou company adopts 4-on-3-off schedule',
+    descZh: '广州一公司自 2025 年 1 月起实行每周工作四天、休息三天；周三员工组队活动，三人以上每人补贴 100 元。',
+    descEn: 'A Guangzhou company moved to a 4-day work, 3-day rest schedule from Jan 2025, subsidizing team activities on Wednesdays.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '四天工作制',
+    tagKey: '4day',
+  },
+  {
+    date: '2025',
+    titleZh: '福建公司春节放假 13.5 天，员工享有"离线权"',
+    titleEn: 'Fujian firm grants 13.5-day Spring Festival + "right to disconnect"',
+    descZh: '福建一科技有限公司宣布春节提前放假，每周工作 4 天半，并赋予员工"离线权"，下班后可拒绝工作联系。',
+    descEn: 'A Fujian tech company announced an extended Spring Festival break, 4.5-day workweeks, and a "right to disconnect" — staff can ignore work contact after hours.',
+    source: '公开报道',
+    sourceKey: 'reports',
+    tag: '离线权',
+    tagKey: 'disconnect',
+  },
+];

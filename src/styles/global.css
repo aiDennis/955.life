@@ -1,0 +1,200 @@
+@import "tailwindcss";
+
+/* ============ 955.life Design Tokens — "Sunset" theme ============ */
+:root {
+  --sunset-50: #FFF7ED;
+  --sunset-100: #FFEDD5;
+  --sunset-200: #FED7AA;
+  --sunset-300: #FDBA74;
+  --sunset-400: #FB923C;
+  --sunset-500: #F97316;
+  --sunset-600: #EA580C;
+  --sunset-700: #C2410C;
+  --night-800: #1E2A4A;
+  --night-900: #141C33;
+  --night-950: #0B1220;
+
+  --bg: #FDF8F2;
+  --bg-soft: #FFF3E6;
+  --surface: #FFFFFF;
+  --ink: #20283C;
+  --ink-soft: #475467; /* 原 #5A6478(5.64:1) → 加深至 7.28:1，小字更稳 */
+  --line: rgba(32, 40, 60, 0.12);
+  --brand: var(--sunset-500);
+  --brand-strong: var(--sunset-600);
+  --brand-glow: rgba(249, 115, 22, 0.18);
+  --accent-night: var(--night-800);
+}
+
+[data-theme="dark"] {
+  --bg: #0B1220;
+  --bg-soft: #101A2E;
+  --surface: #141C33;
+  --ink: #E8ECF6;
+  --ink-soft: #9AA5BC;
+  --line: rgba(232, 236, 246, 0.14);
+  --brand: var(--sunset-400);
+  --brand-strong: var(--sunset-500);
+  --brand-glow: rgba(251, 146, 60, 0.16);
+  --accent-night: var(--sunset-300);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  transition: background-color 0.35s ease, color 0.35s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sunset gradient text */
+.text-gradient {
+  background: linear-gradient(100deg, var(--sunset-500) 0%, var(--sunset-400) 45%, var(--night-800) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+[data-theme="dark"] .text-gradient {
+  background: linear-gradient(100deg, var(--sunset-300) 0%, var(--sunset-400) 45%, #7FA7FF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glass card */
+.glass {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 1.25rem;
+  backdrop-filter: blur(16px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.glass:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px -12px var(--brand-glow);
+  border-color: color-mix(in srgb, var(--brand) 40%, transparent);
+}
+
+/* Magnetic button */
+.magnetic {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(120deg, #C2410C, #9A3412); /* sunset-700 → 800：白字对比度 5.18:1（AA） */
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  box-shadow: 0 8px 24px -8px var(--brand-glow);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 32px -8px var(--brand-glow);
+}
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.btn-ghost:hover {
+  border-color: var(--brand);
+  background: var(--brand-glow);
+}
+
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.7rem;
+  border-radius: 9999px;
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+.chip:hover { border-color: var(--brand); color: var(--brand); }
+.chip.active {
+  background: linear-gradient(120deg, #C2410C, #9A3412); /* 深橙底 + 白字 ≥5:1（AA） */
+  border-color: #C2410C;
+  color: #fff;
+}
+
+/* Focus visibility — 统一键盘焦点环 */
+:focus-visible {
+  outline: 2px solid var(--brand-strong);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Section reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* Reduced motion — 前庭/晕动症用户降级 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+  .magnetic { transform: none !important; }
+  .btn-primary:hover, .btn-ghost:hover, .glass:hover { transform: none; }
+}
+
+/* Prose for markdown articles */
+.prose-doc h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 2rem 0 0.75rem;
+  color: var(--ink);
+}
+.prose-doc h3 {
+  font-size: 1.15rem;
+  font-weight: 650;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--ink);
+}
+.prose-doc p { margin: 0.7rem 0; line-height: 1.85; color: var(--ink-soft); }
+.prose-doc ul, .prose-doc ol { margin: 0.7rem 0 0.7rem 1.2rem; line-height: 1.8; color: var(--ink-soft); }
+.prose-doc ul { list-style: disc; }
+.prose-doc ol { list-style: decimal; }
+.prose-doc blockquote {
+  border-left: 3px solid var(--brand);
+  padding: 0.4rem 0 0.4rem 1rem;
+  margin: 1rem 0;
+  color: var(--ink-soft);
+  background: var(--bg-soft);
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+.prose-doc strong { color: var(--ink); font-weight: 650; }
+.prose-doc a { color: var(--brand-strong); text-decoration: underline; text-underline-offset: 3px; }
+.prose-doc table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+.prose-doc th, .prose-doc td { border: 1px solid var(--line); padding: 0.5rem 0.75rem; text-align: left; }
+.prose-doc th { background: var(--bg-soft); font-weight: 600; }

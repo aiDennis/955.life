@@ -1,0 +1,21 @@
+---
+/**
+ * 根路径立刻跳转到默认语言首页。
+ * GitHub Pages 等纯静态托管无法发 HTTP 301，只能用 meta + JS。
+ */
+const target = '/zh-CN/';
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <title>955.life</title>
+    <link rel="canonical" href={`https://955.life${target}`} />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <script is:inline define:vars={{ target }}>
+      location.replace(target);
+    </script>
+  </head>
+  <body></body>
+</html>

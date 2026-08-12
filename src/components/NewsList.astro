@@ -1,0 +1,47 @@
+---
+import { newsItems } from '../data/news';
+import { t, type Locale } from '../i18n/ui';
+interface Props { lang: Locale; limit?: number; }
+const { lang, limit = newsItems.length } = Astro.props;
+const p = (k: string) => t(lang, k);
+const isZh = lang.startsWith('zh');
+const items = newsItems.slice(0, limit);
+
+// 标签 8 语言
+const tagNames: Record<string, string> = {
+  '4day': { 'zh-CN': '四天工作制', 'zh-Hant': '四天工作制', en: '4-Day Workweek', ja: '週休3日制', ko: '주 4일 근무', de: '4-Tage-Woche', es: 'Semana de 4 días', fr: 'Semaine de 4 jours' }[lang] ?? '四天工作制',
+  'weekend': { 'zh-CN': '双休', 'zh-Hant': '雙休', en: 'Standard Weekends', ja: '完全週休2日', ko: '주말 휴무', de: 'Wochenenden', es: 'Fin de semana', fr: 'Week-end' }[lang] ?? '双休',
+  'policy': { 'zh-CN': '政策', 'zh-Hant': '政策', en: 'Policy', ja: '政策', ko: '정책', de: 'Politik', es: 'Política', fr: 'Politique' }[lang] ?? '政策',
+  'auto': { 'zh-CN': '车企减负', 'zh-Hant': '車企減負', en: 'Auto Industry', ja: '自動車業界', ko: '자동차 업계', de: 'Autoindustrie', es: 'Sector automotriz', fr: 'Secteur auto' }[lang] ?? '车企减负',
+  'flex': { 'zh-CN': '弹性休假', 'zh-Hant': '彈性休假', en: 'Flexible Leave', ja: '弾力的休暇', ko: '유연 휴가', de: 'Flexibler Urlaub', es: 'Flexibilidad', fr: 'Congés flexibles' }[lang] ?? '弹性休假',
+  '2.5day': { 'zh-CN': '2.5天休假', 'zh-Hant': '2.5天休假', en: '2.5-Day Weekend', ja: '2.5日週末', ko: '2.5일 주말', de: '2,5-Tage-Wochenende', es: 'Fin de semana de 2,5 días', fr: 'Week-end de 2,5 jours' }[lang] ?? '2.5天休假',
+  '4.5day': { 'zh-CN': '4.5天工作制', 'zh-Hant': '4.5天工作制', en: '4.5-Day Workweek', ja: '4.5日労働制', ko: '4.5일 근무제', de: '4,5-Tage-Woche', es: 'Semana de 4,5 días', fr: 'Semaine de 4,5 jours' }[lang] ?? '4.5天工作制',
+  'disconnect': { 'zh-CN': '离线权', 'zh-Hant': '離線權', en: 'Right to Disconnect', ja: 'オフライン権', ko: '오프라인 권리', de: 'Recht auf Nichterreichbarkeit', es: 'Derecho a desconectar', fr: 'Droit à la déconnexion' }[lang] ?? '离线权',
+};
+// 来源 8 语言（专有名词用官方英文名）
+const sourceNames: Record<string, string> = {
+  'reports': { 'zh-CN': '公开报道', 'zh-Hant': '公開報道', en: 'Public reports', ja: '公表報道', ko: '공개 보도', de: 'Öffentliche Berichte', es: 'Reportes públicos', fr: 'Rapports publics' }[lang] ?? '公开报道',
+  'ceweekly': { 'zh-CN': '中国经济网', 'zh-Hant': '中國經濟網', en: 'China Economic Net', ja: '中国経済網', ko: '중국경제망', de: 'China Economic Net', es: 'China Economic Net', fr: 'China Economic Net' }[lang] ?? '中国经济网',
+  'cyol': { 'zh-CN': '中青报', 'zh-Hant': '中青報', en: 'China Youth Daily', ja: '中国青年報', ko: '중국청년보', de: 'China Youth Daily', es: 'China Youth Daily', fr: 'China Youth Daily' }[lang] ?? '中青报',
+  'henan': { 'zh-CN': '河南省委组织部等', 'zh-Hant': '河南省委組織部等', en: 'Henan Org. Dept. et al.', ja: '河南省党委組織部など', ko: '허난성 당위 조직부 등', de: 'Organisationsabt. der Provinz Henan u. a.', es: 'Dpto. de Organización de Henan y otros', fr: 'Département de l\'Organisation du Henan et al.' }[lang] ?? '河南省委组织部等',
+  'baixing': { 'zh-CN': '百姓关注', 'zh-Hant': '百姓關注', en: 'Public Focus', ja: '百姓関注', ko: '백성관주', de: 'Public Focus', es: 'Public Focus', fr: 'Public Focus' }[lang] ?? '百姓关注',
+};
+const tagOf = (k: string) => tagNames[k] ?? tagNames[k as keyof typeof tagNames] ?? '政策';
+const sourceOf = (k: string) => sourceNames[k] ?? sourceNames[k as keyof typeof sourceNames] ?? '';
+---
+
+<div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+  {
+    items.map((n) => (
+      <article class="glass p-5 md:p-6 flex flex-col">
+        <div class="flex items-center gap-2.5 mb-3">
+          <time class="text-xs font-bold tracking-wide" style="color: var(--brand);">{n.date}</time>
+          <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap" style="border:1px solid var(--line); color: var(--ink-soft);">{tagOf(n.tagKey)}</span>
+        </div>
+        <h3 class="text-[15px] md:text-base font-bold leading-snug mb-2.5" style="color: var(--ink);">{isZh ? n.titleZh : n.titleEn}</h3>
+        <p class="text-sm leading-7 flex-1 min-w-0" style="color: var(--ink-soft);">{isZh ? n.descZh : n.descEn}</p>
+        <p class="mt-4 pt-3 text-xs border-t" style="color: var(--ink-soft); opacity: 0.8; border-color: var(--line);">{sourceOf(n.sourceKey)}</p>
+      </article>
+    ))
+  }
+</div>
