@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import { locales, localeNames } from '../i18n/ui';
+---
+
+<Base title="404 · Page not found" description="页面不存在或已被移动。返回 955.life 首页，继续探索八小时工作制。">
+  <section class="mx-auto max-w-3xl px-4 py-24 text-center reveal">
+    <div class="text-8xl font-black tracking-tight mb-6">
+      <span class="text-gradient">404</span>
+    </div>
+    <h1 class="text-2xl md:text-3xl font-extrabold tracking-tight mb-4" id="p404-title">页面不存在</h1>
+    <p class="text-base leading-relaxed mb-8" style="color: var(--ink-soft);" id="p404-desc">
+      这个页面可能已被移动或删除。不如回去看看八小时工作制的内容？
+    </p>
+
+    <a id="home-link" href="/zh-CN/" class="btn-primary mb-10">
+      <span id="p404-cta">返回首页</span>
+    </a>
+
+    <div class="flex flex-wrap justify-center gap-2">
+      {
+        locales.map((l) => (
+          <a
+            href={`/${l}/`}
+            class="chip"
+            style="color: var(--ink-soft);"
+          >
+            {localeNames[l]}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<script is:inline>
+  (function () {
+    // 根据浏览器语言显示对应语言文案并指向对应语言首页
+    var texts = {
+      'zh-CN': { t: '页面不存在', d: '这个页面可能已被移动或删除。不如回去看看八小时工作制的内容？', c: '返回首页' },
+      'zh-Hant': { t: '頁面不存在', d: '這個頁面可能已被移動或刪除。不如回去看看八小時工作制的內容？', c: '返回首頁' },
+      en: { t: 'Page not found', d: 'This page may have been moved or deleted. How about going back to explore the 8-hour workday?', c: 'Back to home' },
+      ja: { t: 'ページが見つかりません', d: 'このページは移動または削除された可能性があります。8時間労働制の記事に戻ってみませんか？', c: 'ホームへ戻る' },
+      ko: { t: '페이지를 찾을 수 없습니다', d: '페이지가 이동되었거나 삭제되었을 수 있습니다. 8시간 노동제 콘텐츠를 둘러보러 가볼까요?', c: '홈으로 돌아가기' },
+      de: { t: 'Seite nicht gefunden', d: 'Diese Seite wurde möglicherweise verschoben oder gelöscht. Wie wäre es mit einem Blick auf die 8-Stunden-Arbeitswoche?', c: 'Zur Startseite' },
+      es: { t: 'Página no encontrada', d: 'Esta página pudo ser movida o eliminada. ¿Volvemos a explorar la jornada de 8 horas?', c: 'Volver al inicio' },
+      fr: { t: 'Page introuvable', d: 'Cette page a peut-être été déplacée ou supprimée. Et si on revenait explorer la journée de 8 heures ?', c: 'Retour à l’accueil' },
+    };
+    var lang = (navigator.language || 'zh-CN').toLowerCase();
+    var map = { 'zh-cn': 'zh-CN', 'zh-tw': 'zh-Hant', 'zh-hk': 'zh-Hant', 'zh-mo': 'zh-Hant', en: 'en', ja: 'ja', ko: 'ko', de: 'de', es: 'es', fr: 'fr' };
+    var code = map[lang] || map[lang.split('-')[0]] || 'zh-CN';
+    var t = texts[code] || texts['zh-CN'];
+    document.getElementById('p404-title').textContent = t.t;
+    document.getElementById('p404-desc').textContent = t.d;
+    document.getElementById('p404-cta').textContent = t.c;
+    document.getElementById('home-link').href = '/' + code + '/';
+  })();
+</script>

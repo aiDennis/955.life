@@ -4,7 +4,7 @@ description: "Données d'heures travaillées, recherche OMS sur le surmenage et 
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["工作强度", "过劳", "数据"]
-order: 1
+order: 5
 ---
 Plus d'heures travaillées, plus la vie s'amincit. C'est le problème que 955 aborde.
 
@@ -26,5 +26,9 @@ Plus d'heures travaillées, plus la vie s'amincit. C'est le problème que 955 ab
 - **2021** : mort d'un salarié e-commerce en rentrant d'un service de nuit.
 - **2023** : scandale des heures sup. chez CETC.
 - **2025-2026** : le vent tourne — semaine de 4 jours, proposition de 4,5 jours, week-ends de 2,5 jours, droit à la déconnexion.
+
+## Conclusion
+
+La culture du « l'heure sup est honorable » se desserre. Le repos n'est pas de la paresse : il fait partie du travail. Réduire un peu les heures supplémentaires pour dormir, être en famille ou pratiquer ses passions, ce n'est pas une perte.
 
 Se reposer n'est pas de la paresse. Moins d'heures sup. rend le sommeil et le temps en famille.

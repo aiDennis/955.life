@@ -4,7 +4,7 @@ description: "Projets open source liés (996.ICU, 955.WLB, 944.Life), sources de
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["资源", "开源"]
-order: 1
+order: 7
 ---
 ## Projets open source liés
 

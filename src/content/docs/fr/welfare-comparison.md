@@ -4,7 +4,7 @@ description: "Sécurité sociale, congés maternité et parental, indemnités ma
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["福利", "社保", "育儿假"]
-order: 1
+order: 4
 ---
 Moins d'heures sup. ne sert à rien si les bases ne sont pas couvertes. Une vie 955 exige non seulement « moins d'heures » mais « une vraie sécurité ».
 
@@ -30,5 +30,9 @@ Moins d'heures sup. ne sert à rien si les bases ne sont pas couvertes. Une vie 
 - **Allemagne** : **6 semaines plein salaire**.
 - **Japon** : 66,7 %, jusqu'à 18 mois.
 - **États-Unis** : aucune obligation fédérale.
+
+## Conclusion
+
+La protection sociale, c'est la partie du salaire qui n'apparaît jamais sur le bulletin de paie. Une fois les heures et les salaires alignés, ce sont les congés annuels, les congés parentaux et l'indemnité maladie qui font la différence. Démêler ces « salaires invisibles » un par un est plus concret que n'importe quel slogan.
 
 La protection sociale est le « salaire invisible ». Prochaine étape du 955 : négocier clairement les congés invisibles sur le bulletin de paie.

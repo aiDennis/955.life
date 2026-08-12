@@ -4,7 +4,7 @@ description: "Datos de horas de trabajo, investigación de la OMS sobre sobrecar
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["工作强度", "过劳", "数据"]
-order: 1
+order: 5
 ---
 Cuantas más horas de trabajo, más delgada la vida. De eso trata el 955.
 
@@ -26,5 +26,9 @@ Cuantas más horas de trabajo, más delgada la vida. De eso trata el 955.
 - **2021**: muere un empleado de e-commerce camino a casa.
 - **2023**: escándalo de horas extra en CETC.
 - **2025-2026**: cambia el viento — semana de 4 días, propuesta de 4,5 días, fines de semana de 2,5 días, derecho a la desconexión.
+
+## Conclusión
+
+La cultura del «las horas extra son honorables» se está aflojando. El descanso no es pereza: es parte del trabajo. Trabajar un poco menos y dedicar ese tiempo a dormir, a la familia y a las aficiones no es una pérdida.
 
 Descansar no es pereza. Menos horas extra devuelven el sueño y el tiempo en familia.

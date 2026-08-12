@@ -4,7 +4,7 @@ description: "Disposiciones clave sobre jornada, horas extra y vacaciones de la 
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["劳动法", "法律", "维权"]
-order: 1
+order: 6
 ---
 ## Constitución
 

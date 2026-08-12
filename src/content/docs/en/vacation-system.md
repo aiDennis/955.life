@@ -4,7 +4,16 @@ description: "Weekends, 11 statutory holidays, 5-15 days paid leave, the make-up
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["休假", "双休", "带薪假"]
-order: 1
+order: 3
+faq:
+  - q: "How many days of paid annual leave do I get?"
+    a: "Under China's Regulations on Paid Annual Leave: 5 days with 1-10 years of cumulative service, 10 days with 10-20 years, and 15 days with 20+ years. Statutory holidays and rest days do not count toward annual leave."
+  - q: "What happens if I don't use my annual leave?"
+    a: "If the employer genuinely cannot arrange leave and you agree, unused days must be paid at 300% of your daily wage (including normal pay, i.e. an extra 200% on top)."
+  - q: "Is the two-day weekend a legal right?"
+    a: "Yes. Labor Law Article 38 guarantees at least one rest day per week, and the State Council regulations establish the Saturday-Sunday weekend. Weekends are a right, not a favor."
+  - q: "How is overtime pay calculated on statutory holidays?"
+    a: "Working on statutory holidays (11 days: New Year, Spring Festival, Qingming, Labor Day, Dragon Boat, Mid-Autumn, National Day) must be paid at no less than 300% of wages, and cannot be swapped for time off."
 ---
 Holidays look like a small thing, but they decide what your life feels like. A 955 life means not just leaving on time, but actually taking the leave you're entitled to.
 

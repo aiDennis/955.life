@@ -4,7 +4,7 @@ description: "Working-hours data, WHO overwork research, and a 2016-2026 timelin
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["工作强度", "过劳", "数据"]
-order: 1
+order: 5
 ---
 The more hours you work, the thinner your life gets. That's the problem 955 is trying to fix.
 
@@ -26,5 +26,7 @@ The more hours you work, the thinner your life gets. That's the problem 955 is t
 - **2021**: An e-commerce worker dies on the way home after a late shift — nationwide reckoning over "big/small weeks."
 - **2023**: CETC Chengdu overtime incident trends; "forced overtime pushback" resonates.
 - **2025-2026**: The wind is shifting. Sichuan Jingyuan adopts a 4-day week, Jilin suggests 4.5 days, provinces encourage 2.5-day weekends, Fujian firms codify the right to disconnect.
+
+## Conclusion
 
 The "workaholism is honorable" culture is loosening. Rest isn't laziness. It's part of the job, and cutting back on overtime buys back sleep, family time and hobbies. That's not a loss.

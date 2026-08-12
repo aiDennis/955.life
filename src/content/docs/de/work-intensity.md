@@ -4,7 +4,7 @@ description: "Arbeitszeitdaten, WHO-Überarbeitungsforschung und eine Chronik de
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["工作强度", "过劳", "数据"]
-order: 1
+order: 5
 ---
 Je länger die Arbeitszeit, desto dünner das Leben. Genau darum geht es bei 955.
 
@@ -26,5 +26,9 @@ Je länger die Arbeitszeit, desto dünner das Leben. Genau darum geht es bei 955
 - **2021**: Tod eines E-Commerce-Beschäftigten nach Nachtschicht.
 - **2023**: CETC-Überstundenskandal.
 - **2025-2026**: Der Wind dreht sich — 4-Tage-Woche, 4,5-Tage-Vorschlag, 2,5-Tage-Wochenenden, Recht auf Nichterreichbarkeit.
+
+## Fazit
+
+Die Kultur des „Überstunden sind ehrenhaft" lockert sich. Ruhe ist kein Faulsein, sie gehört zur Arbeit. Ein paar Überstunden weniger, und die gewonnene Zeit für Schlaf, Familie und Hobbys zu nutzen, ist kein Verlust.
 
 Ruhe ist keine Faulheit. Weniger Überstunden bringen Schlaf und Zeit für Familie zurück.

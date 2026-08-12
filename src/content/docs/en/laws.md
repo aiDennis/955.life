@@ -4,7 +4,16 @@ description: "Core provisions on working hours, overtime and leave from China's 
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["劳动法", "法律", "维权"]
-order: 1
+order: 6
+faq:
+  - q: "How is overtime pay calculated?"
+    a: "Labor Law Article 44: at least 150% of wages for extended work on a workday; 200% for weekend work that cannot be compensated with time off; 300% for statutory holidays. The base is your full normal-time earnings (including performance pay and bonuses), not the minimum wage."
+  - q: "Can weekend overtime be swapped for time off instead of pay?"
+    a: "Only weekend overtime can be compensated with time off in lieu. Overtime on workdays and statutory holidays must be paid in cash and cannot be offset by time off."
+  - q: "Does working online from home count as overtime?"
+    a: "Yes. A 2024 Shenzhen court ruling held that handling work or attending online meetings outside working hours, when it genuinely occupies rest time, constitutes overtime that must be paid. Keep records of your online work as evidence."
+  - q: "What can I do if my employer refuses to pay overtime?"
+    a: "Gather evidence (attendance records, overtime notices, chat logs) and file a complaint with the labor inspection authority or apply for labor arbitration. Under Labor Contract Law Article 85, late payment adds 50%-100% compensation."
 ---
 ## Constitution
 

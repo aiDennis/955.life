@@ -4,7 +4,7 @@ description: "Kernbestimmungen zu Arbeitszeit, Überstunden und Urlaub aus Verfa
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["劳动法", "法律", "维权"]
-order: 1
+order: 6
 ---
 ## Verfassung
 

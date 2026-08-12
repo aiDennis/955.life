@@ -4,7 +4,7 @@ description: "Sozialversicherung, Mutterschutz und Elternzeit, Lohnfortzahlung i
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["福利", "社保", "育儿假"]
-order: 1
+order: 4
 ---
 Weniger Überstunden helfen nur, wenn die Grundlagen stehen. Ein 955-Leben braucht nicht nur „weniger Stunden", sondern „echte Sicherheit".
 
@@ -30,5 +30,9 @@ Weniger Überstunden helfen nur, wenn die Grundlagen stehen. Ein 955-Leben brauc
 - **Deutschland**: **6 Wochen volle Fortzahlung**.
 - **Japan**: 66,7 %, bis zu 18 Monate.
 - **USA**: keine gesetzliche Pflicht.
+
+## Fazit
+
+Sozialleistungen sind der Teil des Gehalts, der nie auf der Abrechnung auftaucht. Sobald Arbeitszeit und Lohn vergleichbar sind, entscheiden Jahresurlaub, Elternzeit und Krankengeld über den Unterschied. Diese „unsichtbaren Löhne" im Einzelnen zu klären, ist praktischer als jede Parole.
 
 Sozialleistungen sind „unsichtbarer Lohn". Der nächste Schritt von 955: die nicht sichtbaren Urlaubs- und Krankheitsleistungen klar verhandeln.

@@ -18,6 +18,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955公司',
     nav_news: '新闻动态',
     nav_resources: '资源库',
+    nav_laws: '法律法规',
     nav_whatis: '什么是955',
 
     hero_badge: '八小时工作制 · 理想工作制度',
@@ -68,6 +69,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: '主题',
     back: '返回',
+    prev_t: '上一篇',
+    next_t: '下一篇',
     faq_t: '常见问题',
     related_t: '相关阅读',
     readmore: '阅读全文',
@@ -102,6 +105,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955公司',
     nav_news: '新聞動態',
     nav_resources: '資源庫',
+    nav_laws: '法律法規',
     nav_whatis: '什麼是955',
 
     hero_badge: '八小時工作制 · 理想工作制度',
@@ -152,6 +156,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: '主題',
     back: '返回',
+    prev_t: '上一篇',
+    next_t: '下一篇',
     faq_t: '常見問題',
     related_t: '相關閱讀',
     readmore: '閱讀全文',
@@ -186,6 +192,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955 Companies',
     nav_news: 'News',
     nav_resources: 'Resources',
+    nav_laws: 'Laws',
     nav_whatis: 'What is 955',
 
     hero_badge: 'The 8-Hour Workday · An Ideal Work Life',
@@ -236,6 +243,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: 'Theme',
     back: 'Back',
+    prev_t: 'Previous',
+    next_t: 'Next',
     faq_t: 'FAQ',
     related_t: 'Related reading',
     readmore: 'Read more',
@@ -270,6 +279,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955企業',
     nav_news: 'ニュース',
     nav_resources: 'リソース',
+    nav_laws: '法律',
     nav_whatis: '955とは',
 
     hero_badge: '8時間労働制 · 理想の働き方',
@@ -320,6 +330,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: 'テーマ',
     back: '戻る',
+    prev_t: '前の記事',
+    next_t: '次の記事',
     faq_t: 'よくある質問',
     related_t: '関連記事',
     readmore: '続きを読む',
@@ -354,6 +366,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955 기업',
     nav_news: '뉴스',
     nav_resources: '자료실',
+    nav_laws: '법률',
     nav_whatis: '955란?',
 
     hero_badge: '8시간 노동제 · 이상적인 근무',
@@ -404,6 +417,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: '테마',
     back: '뒤로',
+    prev_t: '이전 글',
+    next_t: '다음 글',
     faq_t: '자주 묻는 질문',
     related_t: '관련 읽기',
     readmore: '더 읽기',
@@ -438,6 +453,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: '955-Unternehmen',
     nav_news: 'Neuigkeiten',
     nav_resources: 'Ressourcen',
+    nav_laws: 'Recht',
     nav_whatis: 'Was ist 955',
 
     hero_badge: '8-Stunden-Tag · Ideale Arbeitswelt',
@@ -488,6 +504,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: 'Design',
     back: 'Zurück',
+    prev_t: 'Vorheriger',
+    next_t: 'Nächster',
     faq_t: 'Häufige Fragen',
     related_t: 'Weiterlesen',
     readmore: 'Weiterlesen',
@@ -522,6 +540,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: 'Empresas 955',
     nav_news: 'Noticias',
     nav_resources: 'Recursos',
+    nav_laws: 'Leyes',
     nav_whatis: 'Qué es 955',
 
     hero_badge: 'Jornada de 8 horas · Trabajo ideal',
@@ -572,6 +591,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: 'Tema',
     back: 'Volver',
+    prev_t: 'Anterior',
+    next_t: 'Siguiente',
     faq_t: 'Preguntas frecuentes',
     related_t: 'Lecturas relacionadas',
     readmore: 'Leer más',
@@ -606,6 +627,7 @@ export const ui: Record<Locale, Dict> = {
     nav_companies: 'Entreprises 955',
     nav_news: 'Actualités',
     nav_resources: 'Ressources',
+    nav_laws: 'Droit',
     nav_whatis: 'Qu\'est-ce que 955',
 
     hero_badge: 'Journée de 8 heures · Travail idéal',
@@ -656,6 +678,8 @@ export const ui: Record<Locale, Dict> = {
 
     theme_label: 'Thème',
     back: 'Retour',
+    prev_t: 'Précédent',
+    next_t: 'Suivant',
     faq_t: 'Questions fréquentes',
     related_t: 'À lire aussi',
     readmore: 'Lire la suite',

@@ -4,7 +4,7 @@ description: "Week-ends, 11 jours fériés, 5-15 jours de congés payés, la pol
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["休假", "双休", "带薪假"]
-order: 1
+order: 3
 ---
 Les congés semblent anodins, mais ils décident de la qualité de la vie. Une vie 955, c'est non seulement partir à l'heure — mais obtenir réellement les congés auxquels on a droit.
 

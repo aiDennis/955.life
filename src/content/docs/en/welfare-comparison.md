@@ -4,7 +4,7 @@ description: "Social insurance, maternity and parental leave, sick pay — how w
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["福利", "社保", "育儿假"]
-order: 1
+order: 4
 ---
 Fewer hours only help if the basics are covered. On welfare, the gap between China and the rest of the world is bigger than most people think.
 
@@ -32,5 +32,7 @@ Note: contribution bases are often understated by employers — report to 12333.
 - **Germany**: **6 weeks full pay**, paid by employer.
 - **Japan**: 66.7% sickness allowance for up to 18 months.
 - **US**: no federal statutory paid sick leave.
+
+## Conclusion
 
 Welfare is the part of your salary that never shows up on the pay stub. Once hours and pay level out, the real difference between jobs comes down to annual leave, parental leave and sick pay. Getting those straight is more practical than any slogan.

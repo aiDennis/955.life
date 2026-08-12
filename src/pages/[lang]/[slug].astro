@@ -21,28 +21,57 @@ const slugPath = entry.id.split('/').slice(1).join('/').replace(/\.md$/, '');
 const canonical = `https://955.life/${lang}/${slugPath}/`;
 const siteUrl = 'https://955.life/';
 
-// ---- 相关阅读：同语言，tags 匹配优先，order 兜底 ----
+// ---- 相关阅读：标签 + 标题/描述关键词多维打分，2 或 4 条成对显示 ----
 const allDocs = await getCollection('docs');
-const sameLang = allDocs
-  .filter((d) => d.id.startsWith(`${lang}/`))
-  .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+const sameLang = allDocs.filter((d) => d.id.startsWith(`${lang}/`));
+// 阅读顺序（order）
+const orderedDocs = [...sameLang].sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 const myTags = new Set((entry.data.tags ?? []) as string[]);
+
+/** 提取关键词：中文/日文/韩文按 2-gram，其余按词 */
+function keyTokens(s: string): Set<string> {
+  const lower = s.toLowerCase();
+  const cjk = lower.replace(/[^\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]+/g, '');
+  const out = new Set<string>();
+  if (cjk.length > 1) {
+    for (let i = 0; i < cjk.length - 1; i++) out.add(cjk.slice(i, i + 2));
+  }
+  for (const w of lower.replace(/[^a-z0-9]+/g, ' ').split(' ')) {
+    if (w.length > 2) out.add(w);
+  }
+  return out;
+}
+
 const related = (() => {
+  const curKeys = keyTokens(`${entry.data.title} ${entry.data.description}`);
   const scored = sameLang
     .filter((d) => d.id !== entry.id)
-    .map((d) => ({ d, score: ((d.data.tags ?? []) as string[]).filter((x) => myTags.has(x)).length }))
+    .map((d) => {
+      const tagHit = ((d.data.tags ?? []) as string[]).filter((x) => myTags.has(x)).length;
+      const dKeys = keyTokens(`${d.data.title} ${d.data.description}`);
+      let kwHit = 0;
+      dKeys.forEach((k) => { if (curKeys.has(k)) kwHit++; });
+      // 标签命中权重高，关键词重叠作区分度
+      return { d, score: tagHit * 3 + kwHit };
+    })
+    .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score || (a.d.data.order ?? 99) - (b.d.data.order ?? 99));
-  const matched = scored.filter((x) => x.score > 0).slice(0, 3);
-  if (matched.length >= 2) return matched.map((x) => x.d);
-  // tag 匹配不足 → 按 order 前后补
-  const idx = sameLang.findIndex((d) => d.id === entry.id);
-  const fallback = sameLang.filter((d) => d.id !== entry.id);
-  const ordered = [
-    ...fallback.filter((d) => Math.abs((d.data.order ?? 99) - (entry.data.order ?? 99)) === 1),
-    ...fallback,
-  ];
-  return Array.from(new Map([...matched.map((x) => [x.d.id, x.d]), ...ordered.map((d) => [d.id, d])].map((x) => [x[0], x[1]])).values()).slice(0, 3);
+  const matched = scored.slice(0, 4).map((x) => x.d);
+  // 两列布局：只显示 2 或 4 条；1/3 条时用阅读顺序最接近的文章补足
+  if (matched.length === 0 || matched.length === 2) return matched;
+  const target = matched.length === 1 ? 2 : 4;
+  const picked = new Set(matched.map((d) => d.id));
+  const myOrder = entry.data.order ?? 99;
+  const neighbors = orderedDocs
+    .filter((d) => d.id !== entry.id && !picked.has(d.id))
+    .sort((a, b) => Math.abs((a.data.order ?? 99) - myOrder) - Math.abs((b.data.order ?? 99) - myOrder));
+  return [...matched, ...neighbors].slice(0, target);
 })();
+
+// ---- 上一篇 / 下一篇：同语言内按阅读顺序（order）----
+const idx = orderedDocs.findIndex((d) => d.id === entry.id);
+const prevDoc = idx > 0 ? orderedDocs[idx - 1] : null;
+const nextDoc = idx >= 0 && idx < orderedDocs.length - 1 ? orderedDocs[idx + 1] : null;
 const relPath = (d: any) => d.id.split('/').slice(1).join('/').replace(/\.md$/, '');
 
 // ---- Schema 组装（Article + FAQPage + BreadcrumbList）----
@@ -134,6 +163,29 @@ const jsonLd = JSON.stringify(schemas);
             }
           </div>
         </div>
+      )
+    }
+
+    {
+      (prevDoc || nextDoc) && (
+        <nav class="mt-10 pt-6 border-t flex justify-between gap-4" style="border-color: var(--line);" aria-label={p('related_t')}>
+          {
+            prevDoc ? (
+              <a href={`/${lang}/${relPath(prevDoc)}/`} class="flex-1 min-w-0">
+                <p class="text-xs font-semibold" style="color: var(--ink-soft);">← {p('prev_t')}</p>
+                <p class="mt-1 text-sm font-semibold truncate" style="color: var(--ink);">{prevDoc.data.title}</p>
+              </a>
+            ) : <span class="flex-1" />
+          }
+          {
+            nextDoc ? (
+              <a href={`/${lang}/${relPath(nextDoc)}/`} class="flex-1 min-w-0 text-right">
+                <p class="text-xs font-semibold" style="color: var(--ink-soft);">{p('next_t')} →</p>
+                <p class="mt-1 text-sm font-semibold truncate" style="color: var(--ink);">{nextDoc.data.title}</p>
+              </a>
+            ) : <span class="flex-1" />
+          }
+        </nav>
       )
     }
   </article>

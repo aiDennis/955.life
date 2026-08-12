@@ -6,32 +6,59 @@ import LangSwitch from './LangSwitch.astro';
 interface Props { lang: Locale; }
 const { lang } = Astro.props;
 const p = (k: string) => t(lang, k);
+
+/** 统一尾部斜杠，便于路径比较 */
+const pathname = Astro.url.pathname.endsWith('/')
+  ? Astro.url.pathname
+  : `${Astro.url.pathname}/`;
+
+const homeHref = `/${lang}/`;
 const links = [
-  { href: `/${lang}/`, label: p('nav_home') },
+  { href: homeHref, label: p('nav_home') },
   { href: `/${lang}/what-is-955/`, label: p('nav_whatis') },
   { href: `/${lang}/8-hour-workday/`, label: p('nav_workday') },
   { href: `/${lang}/vacation-system/`, label: p('nav_vacation') },
   { href: `/${lang}/welfare-comparison/`, label: p('nav_welfare') },
   { href: `/${lang}/work-intensity/`, label: p('nav_intensity') },
+  { href: `/${lang}/laws/`, label: p('nav_laws') },
   { href: `/${lang}/companies/`, label: p('nav_companies') },
   { href: `/${lang}/news/`, label: p('nav_news') },
   { href: `/${lang}/resources/`, label: p('nav_resources') },
 ];
+
+/**
+ * 判断导航项是否为当前页。
+ * 首页仅精确匹配；其余项支持前缀匹配（含子路径）。
+ */
+function isActive(href: string): boolean {
+  if (href === homeHref) return pathname === homeHref;
+  return pathname === href || pathname.startsWith(href);
+}
 ---
 
 <header class="sticky top-0 z-50 border-b" style="border-color: var(--line); background: color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter: blur(18px);">
   <nav class="mx-auto max-w-6xl px-4 h-16 flex items-center gap-6" aria-label="Main">
-    <a href={`/${lang}/`} class="flex items-center gap-1.5 shrink-0 magnetic group" aria-label="955.life home">
+    <a href={homeHref} class="flex items-center gap-1.5 shrink-0 magnetic group" aria-label="955.life home">
       <span class="font-black text-[1.35rem] tracking-tight leading-none transition-opacity group-hover:opacity-75" style="color: var(--ink);">955<span class="text-gradient">.life</span></span>
     </a>
 
     <div class="hidden lg:flex items-center gap-1 flex-1">
       {
-        links.map((l) => (
-          <a href={l.href} class="px-3 py-2 rounded-full text-sm font-medium hover:opacity-80 transition-opacity" style="color: var(--ink-soft);">
-            {l.label}
-          </a>
-        ))
+        links.map((l) => {
+          const active = isActive(l.href);
+          return (
+            <a
+              href={l.href}
+              class:list={[
+                'nav-link px-3 py-2 rounded-full text-sm font-medium transition-colors',
+                active && 'nav-link--active',
+              ]}
+              aria-current={active ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
+          );
+        })
       }
     </div>
 
@@ -46,7 +73,23 @@ const links = [
 
   <div id="mobile-menu" class="lg:hidden hidden absolute top-[63px] left-0 right-0 px-4 pb-4" style="background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(18px); border-bottom: 1px solid var(--line);">
     <div class="flex flex-col gap-1 glass p-3">
-      {links.map((l) => (<a href={l.href} class="px-3 py-2.5 rounded-xl text-sm font-medium" style="color: var(--ink-soft);">{l.label}</a>))}
+      {
+        links.map((l) => {
+          const active = isActive(l.href);
+          return (
+            <a
+              href={l.href}
+              class:list={[
+                'nav-link px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
+                active && 'nav-link--active',
+              ]}
+              aria-current={active ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
+          );
+        })
+      }
     </div>
   </div>
 </header>

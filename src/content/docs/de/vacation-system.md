@@ -4,7 +4,7 @@ description: "Wochenenden, 11 gesetzliche Feiertage, 5-15 Tage bezahlter Urlaub,
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["休假", "双休", "带薪假"]
-order: 1
+order: 3
 ---
 Urlaub wirkt klein, entscheidet aber darüber, wie sich das Leben anfühlt. Ein 955-Leben heißt: pünktlich Feierabend — und den Urlaub tatsächlich bekommen, der einem zusteht.
 

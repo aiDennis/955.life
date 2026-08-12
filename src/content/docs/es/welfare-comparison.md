@@ -4,7 +4,7 @@ description: "Seguridad social, permisos de maternidad y paternidad, salario por
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["福利", "社保", "育儿假"]
-order: 1
+order: 4
 ---
 Menos horas extra solo ayudan si lo básico está cubierto. Una vida 955 necesita no solo "menos horas" sino "seguridad real".
 
@@ -30,5 +30,9 @@ Menos horas extra solo ayudan si lo básico está cubierto. Una vida 955 necesit
 - **Alemania**: **6 semanas completas**.
 - **Japón**: 66,7 %, hasta 18 meses.
 - **EE. UU.**: sin obligación federal.
+
+## Conclusión
+
+El bienestar es la parte del salario que nunca aparece en la nómina. Una vez que horas y sueldo se igualan, lo que marca la diferencia son las vacaciones anuales, los permisos parentales y la baja por enfermedad. Desentrañar esos «salarios invisibles» uno por uno es más práctico que cualquier eslogan.
 
 El bienestar es el "salario invisible". El siguiente paso del 955: negociar los permisos que no ves en la nómina.

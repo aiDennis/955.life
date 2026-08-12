@@ -4,7 +4,7 @@ description: "Histoire, fondements juridiques et état mondial de la journée de
 date: "2026-08-06"
 updated: "2026-08-06"
 tags: ["8小时工作制", "劳动法"]
-order: 1
+order: 2
 ---
 La journée de 8 heures est le socle juridique d'une vie 955 — un standard conquis par les mouvements ouvriers.
 
@@ -23,3 +23,11 @@ La journée de 8 heures est le socle juridique d'une vie 955 — un standard con
 - **Règlement du Conseil d'État** : 8 h/jour, 40 h/semaine.
 
 **Le 996 (72 h/semaine) est illégal à tous égards.**
+
+## Situation mondiale
+
+D'après le graphique comparatif de ce site : l'Allemagne travaille environ 1 343 heures par an, le Japon environ 1 607, la Chine environ 2 195. Fait intéressant : les pays à temps de travail court ne sont pas moins productifs. Les leaders de la productivité par heure de l'OCDE (Norvège, Danemark, Allemagne) figurent parmi les durées de travail les plus courtes (moyenne OCDE : 1 736 heures).
+
+## L'ère de l'IA : le problème n'est pas résolu
+
+L'IA a considérablement augmenté la productivité, mais la durée moyenne du travail n'a pas baissé — le « paradoxe de la productivité ». Le temps gagné est réinvesti dans davantage de production plutôt que dans des fins de journée plus précoces. Une étude de la banque centrale sud-coréenne montre que l'IA n'a réduit le temps de travail que de 3,8 % en moyenne (environ 1 h 30 par semaine), sans hausse de la productivité globale. Les think tanks estiment que 28 % de la main-d'œuvre britannique et 35 millions de travailleurs américains pourraient passer à la semaine de quatre jours d'ici dix ans si les gains de l'IA étaient partagés. En définitive, le temps de travail est un choix institutionnel, pas une fatalité technologique. L'Islande, le Royaume-Uni et les pilotes de semaine de quatre jours lancés au Sichuan en 2026 le démontrent.

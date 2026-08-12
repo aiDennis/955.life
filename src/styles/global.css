@@ -117,6 +117,23 @@ body {
   background: var(--brand-glow);
 }
 
+/* 主导航链接 */
+.nav-link {
+  color: var(--ink-soft);
+}
+.nav-link:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--brand-glow) 45%, transparent);
+}
+.nav-link--active {
+  color: var(--brand-strong);
+  background: var(--brand-glow);
+  font-weight: 700;
+}
+[data-theme="dark"] .nav-link--active {
+  color: var(--brand);
+}
+
 /* Chips */
 .chip {
   display: inline-flex;
