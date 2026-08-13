@@ -3,7 +3,7 @@ title: "Urlaubssysteme: Wochenenden, Jahresurlaub & die 4-Tage-Woche"
 description: "Wochenenden, 11 gesetzliche Feiertage, 5-15 Tage bezahlter Urlaub, die Zusatzarbeit-Debatte und das globale 4-Tage-Experiment."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["休假", "双休", "带薪假"]
+tags: ["Urlaub", "Freies Wochenende", "Bezahlter Urlaub"]
 order: 3
 ---
 Urlaub wirkt klein, entscheidet aber darüber, wie sich das Leben anfühlt. Ein 955-Leben heißt: pünktlich Feierabend — und den Urlaub tatsächlich bekommen, der einem zusteht.

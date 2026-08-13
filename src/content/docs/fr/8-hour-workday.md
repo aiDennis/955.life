@@ -3,7 +3,7 @@ title: "La journée de 8 heures : de Ford au droit"
 description: "Histoire, fondements juridiques et état mondial de la journée de 8 h : Chicago 1886, Ford 1914, conventions OIT, droit du travail chinois."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["8小时工作制", "劳动法"]
+tags: ["Journée de 8 heures", "Droit du travail"]
 order: 2
 ---
 La journée de 8 heures est le socle juridique d'une vie 955 — un standard conquis par les mouvements ouvriers.

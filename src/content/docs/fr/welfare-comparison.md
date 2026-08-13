@@ -3,7 +3,7 @@ title: "Comparaison de la protection sociale : de la sécurité sociale au cong�
 description: "Sécurité sociale, congés maternité et parental, indemnités maladie : comment la protection sociale diffère dans le monde."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["福利", "社保", "育儿假"]
+tags: ["Avantages sociaux", "Sécurité sociale", "Congé parental"]
 order: 4
 ---
 Moins d'heures sup. ne sert à rien si les bases ne sont pas couvertes. Une vie 955 exige non seulement « moins d'heures » mais « une vraie sécurité ».

@@ -3,7 +3,7 @@ title: "Intensité du travail : données, karoshi et chronologie"
 description: "Données d'heures travaillées, recherche OMS sur le surmenage et chronologie de cas 2016-2026."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["工作强度", "过劳", "数据"]
+tags: ["Intensité du travail", "Surmenage", "Données"]
 order: 5
 ---
 Plus d'heures travaillées, plus la vie s'amincit. C'est le problème que 955 aborde.

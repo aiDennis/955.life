@@ -20,6 +20,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: '资源库',
     nav_laws: '法律法规',
     nav_whatis: '什么是955',
+    nav_topics: '专题',
 
     hero_badge: '八小时工作制 · 理想工作制度',
     hero_title: '工作 955，生活为先',
@@ -30,9 +31,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40 小时',
     stat1_l: '标准周工时上限',
     stat2_v: '5-15 天',
-    stat3_l: '法定带薪年假',
+    stat2_l: '法定带薪年假',
     stat3_v: '1.5-3倍',
-    stat2_l: '法定节假日加班工资',
+    stat3_l: '法定节假日加班工资',
     stat4_v: '8 小时',
     stat4_l: '标准日工时',
 
@@ -107,6 +108,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: '資源庫',
     nav_laws: '法律法規',
     nav_whatis: '什麼是955',
+    nav_topics: '專題',
 
     hero_badge: '八小時工作制 · 理想工作制度',
     hero_title: '工作 955，生活為先',
@@ -117,9 +119,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40 小時',
     stat1_l: '標準週工時上限',
     stat2_v: '5-15天',
-    stat3_l: '法定帶薪年假',
+    stat2_l: '法定帶薪年假',
     stat3_v: '1.5-3倍',
-    stat2_l: '法定節假日加班工資',
+    stat3_l: '法定節假日加班工資',
     stat4_v: '8 小時',
     stat4_l: '標準日工時',
 
@@ -194,6 +196,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: 'Resources',
     nav_laws: 'Laws',
     nav_whatis: 'What is 955',
+    nav_topics: 'Topics',
 
     hero_badge: 'The 8-Hour Workday · An Ideal Work Life',
     hero_title: 'Work 955, live first',
@@ -204,9 +207,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40h',
     stat1_l: 'Standard weekly hours cap',
     stat2_v: '5-15 days',
-    stat3_l: 'Statutory paid leave',
+    stat2_l: 'Statutory paid leave',
     stat3_v: '1.5-3×',
-    stat2_l: 'Overtime pay on holidays',
+    stat3_l: 'Overtime pay on holidays',
     stat4_v: '8h',
     stat4_l: 'Standard daily hours',
 
@@ -281,6 +284,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: 'リソース',
     nav_laws: '法律',
     nav_whatis: '955とは',
+    nav_topics: '特集',
 
     hero_badge: '8時間労働制 · 理想の働き方',
     hero_title: '働く 955、生活を優先',
@@ -291,9 +295,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40時間',
     stat1_l: '標準週労働時間の上限',
     stat2_v: '5-15日',
-    stat3_l: '法定有給休暇',
+    stat2_l: '法定有給休暇',
     stat3_v: '1.5〜3倍',
-    stat2_l: '法定休日労働の割増賃金',
+    stat3_l: '法定休日労働の割増賃金',
     stat4_v: '8時間',
     stat4_l: '標準日労働時間',
 
@@ -368,6 +372,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: '자료실',
     nav_laws: '법률',
     nav_whatis: '955란?',
+    nav_topics: '주제',
 
     hero_badge: '8시간 노동제 · 이상적인 근무',
     hero_title: '일은 955, 삶이 먼저',
@@ -378,9 +383,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40시간',
     stat1_l: '표준 주당 노동시간 상한',
     stat2_v: '5-15일',
-    stat3_l: '법정 유급휴가',
+    stat2_l: '법정 유급휴가',
     stat3_v: '1.5-3배',
-    stat2_l: '법정 공휴일 가산수당',
+    stat3_l: '법정 공휴일 가산수당',
     stat4_v: '8시간',
     stat4_l: '표준 일일 노동시간',
 
@@ -455,6 +460,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: 'Ressourcen',
     nav_laws: 'Recht',
     nav_whatis: 'Was ist 955',
+    nav_topics: 'Themen',
 
     hero_badge: '8-Stunden-Tag · Ideale Arbeitswelt',
     hero_title: 'Arbeit 955, Leben zuerst',
@@ -465,9 +471,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40 Std.',
     stat1_l: 'Standard-Wochenstunden',
     stat2_v: '5-15 Tage',
-    stat3_l: 'Gesetzlicher Urlaub',
+    stat2_l: 'Gesetzlicher Urlaub',
     stat3_v: '1,5-3×',
-    stat2_l: 'Zuschlag an Feiertagen',
+    stat3_l: 'Zuschlag an Feiertagen',
     stat4_v: '8 Std.',
     stat4_l: 'Standard-Tagesarbeitszeit',
 
@@ -542,6 +548,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: 'Recursos',
     nav_laws: 'Leyes',
     nav_whatis: 'Qué es 955',
+    nav_topics: 'Temas',
 
     hero_badge: 'Jornada de 8 horas · Trabajo ideal',
     hero_title: 'Trabaja 955, vive primero',
@@ -552,9 +559,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40 h',
     stat1_l: 'Máximo semanal estándar',
     stat2_v: '5-15 días',
-    stat3_l: 'Vacaciones pagadas legales',
+    stat2_l: 'Vacaciones pagadas legales',
     stat3_v: '1,5-3×',
-    stat2_l: 'Pago extra en festivos',
+    stat3_l: 'Pago extra en festivos',
     stat4_v: '8 h',
     stat4_l: 'Jornada diaria estándar',
 
@@ -629,6 +636,7 @@ export const ui: Record<Locale, Dict> = {
     nav_resources: 'Ressources',
     nav_laws: 'Droit',
     nav_whatis: 'Qu\'est-ce que 955',
+    nav_topics: 'Dossiers',
 
     hero_badge: 'Journée de 8 heures · Travail idéal',
     hero_title: 'Travail 955, la vie d\'abord',
@@ -639,9 +647,9 @@ export const ui: Record<Locale, Dict> = {
     stat1_v: '40 h',
     stat1_l: 'Plafond hebdomadaire standard',
     stat2_v: '5-15 jours',
-    stat3_l: 'Congés payés légaux',
+    stat2_l: 'Congés payés légaux',
     stat3_v: '1,5-3×',
-    stat2_l: 'Majoration les jours fériés',
+    stat3_l: 'Majoration les jours fériés',
     stat4_v: '8 h',
     stat4_l: 'Journée standard',
 

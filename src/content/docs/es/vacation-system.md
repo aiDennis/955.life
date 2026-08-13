@@ -3,7 +3,7 @@ title: "Sistemas de vacaciones: fines de semana, anuales y la semana de 4 días"
 description: "Fines de semana, 11 festivos legales, 5-15 días de vacaciones pagadas, la controversia de los días compensatorios y el experimento de la semana de 4 días."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["休假", "双休", "带薪假"]
+tags: ["Vacaciones", "Fin de semana de dos días", "Vacaciones pagadas"]
 order: 3
 ---
 Las vacaciones parecen poca cosa, pero deciden cómo se siente la vida. Una vida 955 significa no solo salir a tiempo — sino recibir de verdad las vacaciones que te corresponden.

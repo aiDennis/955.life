@@ -3,7 +3,7 @@ title: "Biblioteca legal: las leyes tras las horas de trabajo y las vacaciones"
 description: "Disposiciones clave sobre jornada, horas extra y vacaciones de la Constitución, la Ley Laboral y el Reglamento del Consejo de Estado, con fuentes oficiales."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["劳动法", "法律", "维权"]
+tags: ["Derecho laboral", "Leyes", "Defensa de derechos"]
 order: 6
 ---
 ## Constitución

@@ -3,7 +3,7 @@ title: "Comparativa de bienestar: de la seguridad social al permiso parental"
 description: "Seguridad social, permisos de maternidad y paternidad, salario por enfermedad: cómo difiere el bienestar en el mundo."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["福利", "社保", "育儿假"]
+tags: ["Prestaciones", "Seguridad social", "Permiso parental"]
 order: 4
 ---
 Menos horas extra solo ayudan si lo básico está cubierto. Una vida 955 necesita no solo "menos horas" sino "seguridad real".

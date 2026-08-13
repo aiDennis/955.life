@@ -54,5 +54,8 @@ import { locales, localeNames } from '../i18n/ui';
     document.getElementById('p404-desc').textContent = t.d;
     document.getElementById('p404-cta').textContent = t.c;
     document.getElementById('home-link').href = '/' + code + '/';
+    // <title> 与 <html lang> 同步本地化
+    document.title = '404 · ' + t.t;
+    document.documentElement.setAttribute('lang', code);
   })();
 </script>

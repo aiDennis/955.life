@@ -21,63 +21,91 @@ const maxActual = Math.max(...laborStats.map((s) => s.actual));
 const maxDays = Math.max(maxLeave, maxActual); // 统一参考系
 ---
 
-<section class="mx-auto max-w-6xl px-4 py-16" id="stats">
+<section class="mx-auto max-w-6xl px-4 py-8 md:py-10" id="stats">
   <div class="text-center mb-10 reveal">
+    <p class="kicker kicker--center justify-center mb-4">02 · Data</p>
     <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">{p('chart_t')}</h2>
     <p class="mt-2 text-sm" style="color: var(--ink-soft);">{p('chart_d')}</p>
   </div>
 
-  <div class="glass p-6 md:p-8 reveal">
+  <div class="glass p-5 md:p-8 reveal">
     <div class="flex flex-wrap items-center gap-x-6 gap-y-2 mb-6 text-xs font-semibold">
-      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: linear-gradient(90deg, #FDBA74, #FB923C);"></span>{p('chart_h')} <span class="font-normal opacity-60 tabular-nums">0–{maxHours}{units[lang].h}</span></span>
-      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: #475569;"></span>{p('chart_l')} <span class="font-normal opacity-60 tabular-nums">0–{maxDays}{units[lang].d}</span></span>
-      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: #0D9488;"></span>{p('chart_actual')} <span class="font-normal opacity-60 tabular-nums">0–{maxActual}{units[lang].d}</span></span>
+      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: linear-gradient(90deg, #F2B234, #EE6A1D);"></span>{p('chart_h')} <span class="font-normal opacity-60 tabular-nums">0–{maxHours}{units[lang].h}</span></span>
+      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: var(--chart-leave);"></span>{p('chart_l')} <span class="font-normal opacity-60 tabular-nums">0–{maxDays}{units[lang].d}</span></span>
+      <span class="flex items-center gap-2"><span class="w-3 h-3 rounded-full" style="background: var(--chart-actual);"></span>{p('chart_actual')} <span class="font-normal opacity-60 tabular-nums">0–{maxActual}{units[lang].d}</span></span>
     </div>
 
-    <div class="space-y-1">
+    <div>
       {laborStats.map((s) => (
-        <div class="chart-row grid items-center gap-x-2 rounded-xl px-2.5 py-1.5" style="grid-template-columns: 3.5rem minmax(0, 1fr);" title={isZh ? s.noteZh : s.noteEn}>
-          <span class="text-xs font-medium truncate" style="color: var(--ink-soft);">{isZh ? s.nameZh : s.nameEn}</span>
+        <div
+          class="chart-row relative grid items-center gap-x-3 rounded-xl px-2.5 py-2 outline-none"
+          tabindex="0"
+          aria-label={`${isZh ? s.nameZh : s.nameEn}: ${s.hours}${units[lang].h}, ${s.leave}${units[lang].d}, ${s.actual}${units[lang].d}`}
+          aria-describedby={`note-${s.code}`}
+        >
+          <span class="text-xs font-semibold truncate" style="color: var(--ink);">
+            {isZh ? s.nameZh : s.nameEn}
+          </span>
           <div class="space-y-1.5 min-w-0">
             <div class="flex items-center gap-2">
-              <div class="h-3 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft); padding-right: 2px;">
-                <div class="h-full rounded-full" style={`width: ${(s.hours / maxHours) * 100}%; background: linear-gradient(90deg, #FDBA74, #FB923C);`}></div>
+              <div class="h-3.5 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft);">
+                <div class="chart-bar h-full rounded-full" style={`width: ${(s.hours / maxHours) * 100}%; background: linear-gradient(90deg, #F2B234, #EE6A1D);`}></div>
               </div>
               <span class="text-[13px] font-bold whitespace-nowrap tabular-nums leading-none w-16 text-right shrink-0" style="color: var(--ink);">{s.hours}{units[lang].h}</span>
             </div>
             <div class="flex items-center gap-2">
-              <div class="h-3 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft); padding-right: 2px;">
-                <div class="h-full rounded-full" style={`width: ${(s.leave / maxDays) * 100}%; background: #475569;`}></div>
+              <div class="h-3.5 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft);">
+                <div class="chart-bar h-full rounded-full" style={`width: ${(s.leave / maxDays) * 100}%; background: var(--chart-leave);`}></div>
               </div>
               <span class="text-[13px] font-bold whitespace-nowrap tabular-nums leading-none w-16 text-right shrink-0" style="color: var(--ink);">{s.leave}{units[lang].d}</span>
             </div>
             <div class="flex items-center gap-2">
-              <div class="h-3 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft); padding-right: 2px;">
-                <div class="h-full rounded-full" style={`width: ${(s.actual / maxDays) * 100}%; background: #0D9488;`}></div>
+              <div class="h-3.5 rounded-full overflow-hidden flex-1 min-w-0" style="background: var(--bg-soft);">
+                <div class="chart-bar h-full rounded-full" style={`width: ${(s.actual / maxDays) * 100}%; background: var(--chart-actual);`}></div>
               </div>
               <span class="text-[13px] font-bold whitespace-nowrap tabular-nums leading-none w-16 text-right shrink-0" style="color: var(--ink);">{s.actual}{units[lang].d}</span>
             </div>
           </div>
+          <!-- 口径说明：hover/键盘聚焦自动浮出；点击切换，移出或点外部收起。
+               视觉上用 visibility 隐藏会移出无障碍树，故由行上的 aria-describedby 关联朗读 -->
+          <p class="chart-note" role="tooltip" id={`note-${s.code}`}>{isZh ? s.noteZh : s.noteEn}</p>
         </div>
       ))}
     </div>
 
     <p class="mt-6 pt-4 text-xs border-t" style="color: var(--ink-soft); opacity: 0.8; border-color: var(--line);">
       {isZh
-        ? '口径说明：法定带薪假 = 法定年假 + 法定公共节假日（中国 5 天年假起 + 11 天节假日 = 16 天起；英国 28 天已含公共假日；西班牙为日历日口径）。实际休假 = 实际休取的年假天数（不含公共假日），为 Expedia 调查、日本厚劳省、美国 BLS 等来源的近似值；韩国法定 30 天但实际年假只休约 7 天。悬停数据行可查看各国说明。'
-        : 'Note: statutory leave = annual leave + public holidays (China: 5 days + 11 holidays = 16+; UK: 28 already includes holidays; Spain on calendar-day basis). Actual = annual leave actually taken (excl. holidays, approx. per Expedia/MHLW/US BLS); South Korea: 30 statutory but ~7 taken. Hover a row for country notes.'}
+        ? '口径说明：法定带薪假 = 法定年假 + 法定公共节假日（中国 5 天年假起 + 11 天节假日 = 16 天起；英国 28 天已含公共假日；西班牙为日历日口径）。实际休假 = 实际休取的年假天数（不含公共假日），为 Expedia 调查、日本厚劳省、美国 BLS 等来源的近似值；韩国法定 30 天但实际年假只休约 12 天。悬停或点按数据行可查看各国说明。'
+        : 'Note: statutory leave = annual leave + public holidays (China: 5 days + 11 holidays = 16+; UK: 28 already includes holidays; Spain on calendar-day basis). Actual = annual leave actually taken (excl. holidays, approx. per Expedia/MHLW/US BLS); South Korea: 30 statutory but ~12 taken. Hover or tap a row for country notes.'}
     </p>
   </div>
 </section>
 
-<style>
-  .chart-row {
-    transition: background-color 0.2s ease;
+<script>
+  /**
+   * 图表行 tooltip 的点击切换：hover/键盘聚焦由 CSS 覆盖，
+   * 这里处理点击（含移动端点按）——再点一次、指针移出、点外部或按 Esc 都会收起。
+   */
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('.chart-row'));
+
+  /** 收起所有已固定的 tooltip */
+  function closeAllNotes() {
+    rows.forEach((r) => r.classList.remove('show-note'));
   }
-  .chart-row:hover {
-    background: color-mix(in srgb, var(--brand-glow) 55%, transparent);
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .chart-row { transition: none; }
-  }
-</style>
+
+  rows.forEach((row) => {
+    row.addEventListener('click', () => {
+      const wasOpen = row.classList.contains('show-note');
+      closeAllNotes();
+      if (!wasOpen) row.classList.add('show-note');
+    });
+    row.addEventListener('pointerleave', () => row.classList.remove('show-note'));
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('.chart-row')) closeAllNotes();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllNotes();
+  });
+</script>

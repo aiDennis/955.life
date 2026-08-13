@@ -3,7 +3,7 @@ title: "Welfare Comparison: From Social Insurance to Parental Leave"
 description: "Social insurance, maternity and parental leave, sick pay — how welfare differs around the world."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["福利", "社保", "育儿假"]
+tags: ["Benefits", "Social insurance", "Parental leave"]
 order: 4
 ---
 Fewer hours only help if the basics are covered. On welfare, the gap between China and the rest of the world is bigger than most people think.

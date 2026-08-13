@@ -3,7 +3,7 @@ title: "Intensidad laboral: datos, karoshi y cronología de casos"
 description: "Datos de horas de trabajo, investigación de la OMS sobre sobrecarga y una cronología de casos 2016-2026."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["工作强度", "过劳", "数据"]
+tags: ["Intensidad laboral", "Exceso de trabajo", "Datos"]
 order: 5
 ---
 Cuantas más horas de trabajo, más delgada la vida. De eso trata el 955.

@@ -13,17 +13,17 @@ function switchLang(pathname: string, code: string): string {
 ---
 
 <div class="relative">
-  <details class="group">
-    <summary class="w-10 h-10 grid place-items-center rounded-full border cursor-pointer list-none" style="border-color: var(--line);" title={p('lang_switch')}>
+  <details class="group" data-popover>
+    <summary class="w-10 h-10 grid place-items-center rounded-full border cursor-pointer transition-colors hover:border-[var(--brand)]" style="border-color: var(--line);" title={p('lang_switch')} aria-label={p('lang_switch')}>
       <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     </summary>
-    <div class="absolute right-0 top-12 w-44 glass p-2 shadow-2xl" style="background: var(--surface);">
+    <div class="pop-panel w-44">
       {
         Object.entries(localeNames).map(([code, name]) => (
           <a
             href={switchLang(Astro.url.pathname, code)}
-            class={`block px-3 py-2 rounded-lg text-sm transition-colors ${code === lang ? 'font-bold' : ''}`}
-            style={code === lang ? 'color: var(--brand); background: var(--brand-glow);' : 'color: var(--ink-soft);'}
+            class:list={['block px-3 py-2 rounded-lg text-sm transition-colors nav-link', code === lang && 'nav-link--active']}
+            aria-current={code === lang ? 'true' : undefined}
           >
             {name}
           </a>

@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import { t, type Locale } from '../../i18n/ui';
 
@@ -14,7 +14,8 @@ export async function getStaticPaths() {
   });
 }
 
-const { entry, lang } = Astro.props as { entry: any; lang: Locale };
+type DocEntry = CollectionEntry<'docs'>;
+const { entry, lang } = Astro.props as { entry: DocEntry; lang: Locale };
 const { Content } = await render(entry);
 const p = (k: string) => t(lang, k);
 const slugPath = entry.id.split('/').slice(1).join('/').replace(/\.md$/, '');
@@ -26,7 +27,7 @@ const allDocs = await getCollection('docs');
 const sameLang = allDocs.filter((d) => d.id.startsWith(`${lang}/`));
 // 阅读顺序（order）
 const orderedDocs = [...sameLang].sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
-const myTags = new Set((entry.data.tags ?? []) as string[]);
+const myTags = new Set(entry.data.tags ?? []);
 
 /** 提取关键词：中文/日文/韩文按 2-gram，其余按词 */
 function keyTokens(s: string): Set<string> {
@@ -47,7 +48,7 @@ const related = (() => {
   const scored = sameLang
     .filter((d) => d.id !== entry.id)
     .map((d) => {
-      const tagHit = ((d.data.tags ?? []) as string[]).filter((x) => myTags.has(x)).length;
+      const tagHit = (d.data.tags ?? []).filter((x) => myTags.has(x)).length;
       const dKeys = keyTokens(`${d.data.title} ${d.data.description}`);
       let kwHit = 0;
       dKeys.forEach((k) => { if (curKeys.has(k)) kwHit++; });
@@ -72,10 +73,10 @@ const related = (() => {
 const idx = orderedDocs.findIndex((d) => d.id === entry.id);
 const prevDoc = idx > 0 ? orderedDocs[idx - 1] : null;
 const nextDoc = idx >= 0 && idx < orderedDocs.length - 1 ? orderedDocs[idx + 1] : null;
-const relPath = (d: any) => d.id.split('/').slice(1).join('/').replace(/\.md$/, '');
+const relPath = (d: DocEntry) => d.id.split('/').slice(1).join('/').replace(/\.md$/, '');
 
 // ---- Schema 组装（Article + FAQPage + BreadcrumbList）----
-const schemas: any[] = [
+const schemas: Record<string, unknown>[] = [
   {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -112,8 +113,9 @@ const jsonLd = JSON.stringify(schemas);
 ---
 
 <Base title={`${entry.data.title} | 955.life`} description={entry.data.description} lang={lang} jsonLd={jsonLd}>
+  <div id="read-progress" class="read-progress" aria-hidden="true"></div>
   <article class="mx-auto max-w-3xl px-4 pt-10 pb-12">
-    <a href={`/${lang}/`} class="text-sm font-semibold" style="color: var(--brand);">← {p('back')}</a>
+    <a href={`/${lang}/`} class="text-sm font-semibold hover:underline" style="color: var(--brand);">← {p('back')}</a>
     <h1 class="mt-4 text-3xl md:text-4xl font-black tracking-tight leading-tight">{entry.data.title}</h1>
     <p class="mt-3 text-base leading-relaxed" style="color: var(--ink-soft);">{entry.data.description}</p>
     <div class="mt-4 flex flex-wrap items-center gap-3 text-xs" style="color: var(--ink-soft);">
@@ -189,4 +191,26 @@ const jsonLd = JSON.stringify(schemas);
       )
     }
   </article>
+
+  <script is:inline>
+    // 阅读进度条：rAF 节流的滚动监听
+    (function () {
+      var bar = document.getElementById('read-progress');
+      if (!bar) return;
+      var ticking = false;
+      function update() {
+        var h = document.documentElement;
+        var max = h.scrollHeight - h.clientHeight;
+        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        ticking = false;
+      }
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }, { passive: true });
+      update();
+    })();
+  </script>
 </Base>

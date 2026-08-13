@@ -3,7 +3,7 @@ title: "La jornada de 8 horas: de Ford a la ley"
 description: "Historia, base legal y situación global de la jornada de 8 horas: Chicago 1886, Ford 1914, convenios de la OIT, ley laboral china."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["8小时工作制", "劳动法"]
+tags: ["Jornada de 8 horas", "Derecho laboral"]
 order: 2
 ---
 La jornada de 8 horas es la piedra angular legal de una vida 955 — un estándar ganado por los movimientos obreros.

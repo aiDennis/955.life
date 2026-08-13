@@ -3,7 +3,7 @@ title: "Arbeitsintensität: Daten, Überarbeitung & eine Chronik"
 description: "Arbeitszeitdaten, WHO-Überarbeitungsforschung und eine Chronik der Fälle 2016-2026."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["工作强度", "过劳", "数据"]
+tags: ["Arbeitsintensität", "Überarbeitung", "Daten"]
 order: 5
 ---
 Je länger die Arbeitszeit, desto dünner das Leben. Genau darum geht es bei 955.

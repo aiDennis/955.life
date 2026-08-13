@@ -3,7 +3,7 @@ title: "Ressourcen: Projekte, Daten & Beratungsstellen"
 description: "Verwandte Open-Source-Projekte (996.ICU, 955.WLB, 944.Life), Datenquellen und Beratungsstellen für Arbeitsrechte."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["资源", "开源"]
+tags: ["Ressourcen", "Open Source"]
 order: 7
 ---
 ## Verwandte Open-Source-Projekte

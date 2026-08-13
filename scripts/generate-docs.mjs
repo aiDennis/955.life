@@ -1,6 +1,10 @@
 // Generate 955.life content collections: 7 slugs x 8 locales
-import { writeFileSync, mkdirSync } from 'node:fs';
+// 只用于给新语种/新 slug 打底：已存在的文件一律跳过，绝不覆盖人工润色过的正文与本地化 tags。
+// 需要强制重写时显式加 --force。
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+
+const FORCE = process.argv.includes('--force');
 
 const ROOT = new URL('../src/content/docs/', import.meta.url).pathname;
 const DATE = '2026-08-06';
@@ -231,16 +235,6 @@ order: 1
 `;
 }
 
-// Short placeholder content for remaining slugs (v1 MVP, expand in M2+)
-const EXTRA = [
-  ['8-hour-workday', '8小时工作制', '8-Hour Workday'],
-  ['vacation-system', '休假制度', 'Holiday System'],
-  ['welfare-comparison', '福利对比', 'Welfare Comparison'],
-  ['work-intensity', '工作强度', 'Work Intensity'],
-  ['laws', '法律法规库', 'Laws & Regulations'],
-  ['resources', '资源库', 'Resources'],
-];
-
 for (const slug of Object.keys(C)) {
   const doc = C[slug];
   for (const lang of Object.values(L)) {
@@ -248,21 +242,16 @@ for (const slug of Object.keys(C)) {
     mkdirSync(dir, { recursive: true });
     const meta = doc.meta[lang];
     if (!meta) continue;
+    const target = join(dir, `${slug}.md`);
+    if (existsSync(target) && !FORCE) {
+      console.log(`skip ${lang}/${slug}.md（已存在）`);
+      continue;
+    }
     const body = doc.body[lang] ?? `(TODO)`;
     const file = `${body}\n`;
-    writeFileSync(join(dir, `${slug}.md`), fm(meta, doc.tags, DATE, DATE) + file);
+    writeFileSync(target, fm(meta, doc.tags, DATE, DATE) + file);
     console.log(`wrote ${lang}/${slug}.md`);
   }
 }
 
-// TODO placeholders for remaining slugs (real content added next pass)
-for (const [slug] of EXTRA) {
-  for (const lang of Object.values(L)) {
-    const dir = join(ROOT, lang);
-    mkdirSync(dir, { recursive: true });
-    const title = `[${lang}] ${slug}`;
-    const file = `${title}\n`;
-    writeFileSync(join(dir, `${slug}.md`), fm([title, 'TODO'], ['TODO'], DATE, DATE) + file);
-  }
-}
 console.log('done');

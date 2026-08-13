@@ -23,6 +23,18 @@ const chips: Record<Locale, string[]> = {
   fr: ['Bases légales', 'Pratique mondiale', 'Entreprises 955', 'Données'],
 };
 
+// Ticker 关键词 — 8 语言本地化（跑马灯，内容重复两遍实现无缝循环）
+const tickerWords: Record<Locale, string[]> = {
+  'zh-CN': ['八小时工作制', '双休', '带薪年假', '拒绝内卷', '离线权', '四天工作制', 'Work-Life Balance', '朝九晚五'],
+  'zh-Hant': ['八小時工作制', '雙休', '帶薪年假', '拒絕內捲', '離線權', '四天工作制', 'Work-Life Balance', '朝九晚五'],
+  en: ['8-hour workday', 'Weekends off', 'Paid leave', 'Right to disconnect', '4-day week', 'Work-Life Balance', 'No more 996', 'Nine to five'],
+  ja: ['8時間労働', '完全週休2日', '有給休暇', 'オフライン権', '週休3日制', 'ワークライフバランス', '残業なし', '9時5時'],
+  ko: ['8시간 노동', '주말 휴무', '유급 휴가', '오프라인 권리', '주 4일 근무', '워라밸', '칼퇴근', '9to5'],
+  de: ['8-Stunden-Tag', 'Freie Wochenenden', 'Bezahlter Urlaub', 'Recht auf Offline-Sein', '4-Tage-Woche', 'Work-Life-Balance', 'Feierabend', '9 bis 5'],
+  es: ['Jornada de 8 horas', 'Fines de semana libres', 'Vacaciones pagadas', 'Derecho a desconectar', 'Semana de 4 días', 'Conciliación', 'No al 996', 'De 9 a 5'],
+  fr: ['Journée de 8 h', 'Week-ends libres', 'Congés payés', 'Droit à la déconnexion', 'Semaine de 4 jours', 'Équilibre vie-travail', 'Non au 996', 'De 9 h à 17 h'],
+};
+
 const webSiteJsonLd = JSON.stringify({
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -37,18 +49,20 @@ const webSiteJsonLd = JSON.stringify({
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 -z-10" style="background:
-      radial-gradient(60rem 30rem at 15% 0%, var(--brand-glow), transparent 60%),
-      radial-gradient(50rem 26rem at 90% 10%, rgba(30,42,74,0.12), transparent 55%),
+      radial-gradient(52rem 26rem at 50% -6%, var(--brand-glow), transparent 62%),
+      radial-gradient(40rem 22rem at 88% 12%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
       linear-gradient(180deg, var(--bg-soft), var(--bg));"
     ></div>
-    <div class="mx-auto max-w-6xl px-4 pt-20 pb-16 md:pt-28 md:pb-24 text-center">
-      <span class="chip !cursor-default mb-6" style="color: var(--brand); border-color: color-mix(in srgb, var(--brand) 35%, transparent);">
+    <div class="mx-auto max-w-6xl px-4 pt-16 pb-10 md:pt-24 md:pb-14 text-center">
+      <span class="chip !cursor-default mb-7" style="color: var(--brand); border-color: color-mix(in srgb, var(--brand) 35%, transparent);">
         <Icon name="spark" size={14} /> {p('hero_badge')}
       </span>
-      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.08]">
-        {p('hero_title')}<br />
-        <span class="text-gradient">955 · Work-Life Balance</span>
+      <h1 class="text-4xl md:text-6xl font-black tracking-tight leading-[1.1]">
+        {p('hero_title')}
       </h1>
+      <p class="font-display italic text-gradient text-3xl md:text-5xl font-semibold tracking-tight mt-3 leading-tight">
+        955 · Work-Life Balance
+      </p>
       <p class="mt-6 max-w-2xl mx-auto text-base md:text-lg leading-relaxed whitespace-pre-line" style="color: var(--ink-soft);">
         {p('hero_sub')}
       </p>
@@ -56,30 +70,75 @@ const webSiteJsonLd = JSON.stringify({
         <a href={`/${lang}/what-is-955/`} class="btn-primary magnetic">{p('hero_cta1')}</a>
         <a href={`/${lang}/companies/`} class="btn-ghost magnetic">{p('hero_cta2')}</a>
       </div>
+
+      <!-- 日落弧线：9:00 日出上岗 → 17:00 日落下班 -->
+      <div class="mt-12 md:mt-16 mx-auto max-w-2xl" aria-hidden="true">
+        <svg viewBox="0 0 600 150" class="w-full h-auto" fill="none">
+          <defs>
+            <linearGradient id="heroSun" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#F2B234" />
+              <stop offset="55%" stop-color="#EE6A1D" />
+              <stop offset="100%" stop-color="#C24A0E" />
+            </linearGradient>
+            <linearGradient id="heroArc" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#F2B234" stop-opacity="0.9" />
+              <stop offset="55%" stop-color="#EE6A1D" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#6C5CE7" stop-opacity="0.9" />
+            </linearGradient>
+          </defs>
+          <!-- 地平线 -->
+          <line x1="10" y1="122" x2="590" y2="122" stroke="var(--line)" stroke-width="1" />
+          <!-- 太阳轨迹（虚线弧） -->
+          <path d="M30 122 Q 300 -58 570 122" stroke="url(#heroArc)" stroke-width="1.6" stroke-dasharray="1 7" stroke-linecap="round" opacity="0.75" />
+          <!-- 太阳：约 17:00 位置（t≈0.75 的二次贝塞尔点） -->
+          <g class="hero-sun">
+            <circle cx="435" cy="54" r="16" fill="url(#heroSun)" />
+            <circle cx="435" cy="54" r="24" fill="none" stroke="var(--brand)" stroke-opacity="0.25" stroke-width="1" />
+          </g>
+          <!-- 刻度与标注 -->
+          <text x="30" y="142" font-size="12" font-weight="600" fill="var(--ink-soft)" font-family="ui-monospace, monospace">9:00</text>
+          <text x="570" y="142" text-anchor="end" font-size="12" font-weight="600" fill="var(--ink-soft)" font-family="ui-monospace, monospace">17:00</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- 关键词跑马灯：SSR 6 份（两半 × 3），半幅须 ≥ 容器宽才能无缝循环；超宽屏由脚本再翻倍 -->
+    <div class="ticker border-y py-3" style="border-color: var(--line); background: color-mix(in srgb, var(--bg-soft) 55%, transparent);" aria-hidden="true">
+      <div class="ticker-track" id="ticker-track">
+        {Array.from({ length: 6 }).flatMap(() => tickerWords[lang]).map((w) => (
+          <span class="ticker-item text-xs font-semibold tracking-wide" style="color: var(--ink-soft);">
+            <span class="w-1 h-1 rounded-full shrink-0" style="background: var(--brand);"></span>{w}
+          </span>
+        ))}
+      </div>
     </div>
   </section>
 
   <!-- Stat band -->
-  <section class="mx-auto max-w-6xl px-4 -mt-2">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+  <section class="mx-auto max-w-6xl px-4 mt-12">
+    <div class="glass grid grid-cols-2 md:grid-cols-4 overflow-hidden">
       {[
         { v: p('stat1_v'), l: p('stat1_l') },
-        { v: p('stat2_v'), l: p('stat3_l') },
-        { v: p('stat3_v'), l: p('stat2_l') },
+        { v: p('stat2_v'), l: p('stat2_l') },
+        { v: p('stat3_v'), l: p('stat3_l') },
         { v: p('stat4_v'), l: p('stat4_l') },
       ].map((s, i) => (
-        <div class="glass p-4 md:p-5 text-center reveal" style={`animation-delay: ${i * 80}ms`}>
-          <p class="text-2xl md:text-3xl font-black text-gradient tabular-nums whitespace-nowrap">{s.v}</p>
-          <p class="mt-1.5 text-xs font-medium leading-snug" style="color: var(--ink-soft);">{s.l}</p>
+        <div
+          class="p-5 md:p-6 text-center reveal border-[var(--line)] [&:nth-child(odd)]:border-r md:[&:not(:last-child)]:border-r max-md:[&:nth-child(-n+2)]:border-b"
+          style={`--reveal-delay: ${i * 90}ms`}
+        >
+          <p class="font-display text-3xl md:text-4xl font-black text-gradient tabular-nums whitespace-nowrap">{s.v}</p>
+          <p class="mt-2 text-xs font-medium leading-snug" style="color: var(--ink-soft);">{s.l}</p>
         </div>
       ))}
     </div>
   </section>
 
   <!-- Mission -->
-  <section class="mx-auto max-w-3xl px-4 py-16 text-center reveal">
-    <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">{p('sec_mission_t')}</h2>
-    <p class="mt-4 text-base leading-relaxed" style="color: var(--ink-soft);">{p('sec_mission_d')}</p>
+  <section class="mx-auto max-w-3xl px-4 pt-14 pb-6 md:pt-20 md:pb-8 text-center reveal">
+    <p class="kicker kicker--center justify-center mb-4">01 · Mission</p>
+    <h2 class="text-2xl md:text-4xl font-extrabold tracking-tight">{p('sec_mission_t')}</h2>
+    <p class="mt-4 text-base md:text-lg leading-relaxed" style="color: var(--ink-soft);">{p('sec_mission_d')}</p>
     <div class="mt-6 flex flex-wrap justify-center gap-2 text-xs font-semibold" style="color: var(--ink-soft);">
       <span class="chip !cursor-default"><Icon name="scale" size={14} /> {chips[lang][0]}</span>
       <span class="chip !cursor-default"><Icon name="globe" size={14} /> {chips[lang][1]}</span>
@@ -93,26 +152,45 @@ const webSiteJsonLd = JSON.stringify({
 
   <!-- Latest news -->
   <section class="mx-auto max-w-6xl px-4 py-10">
-    <div class="flex items-end justify-between mb-6">
+    <div class="flex items-end justify-between mb-6 reveal">
       <div>
+        <p class="kicker mb-3">03 · News</p>
         <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight">{p('sec_latest_t')}</h2>
         <p class="mt-1 text-sm" style="color: var(--ink-soft);">{p('news_d')}</p>
       </div>
-      <a href={`/${lang}/news/`} class="text-sm font-semibold whitespace-nowrap" style="color: var(--brand);">{p('sec_latest_more')} <Icon name="arrow" size={14} className="inline-block align-[-2px]" /></a>
+      <a href={`/${lang}/news/`} class="text-sm font-semibold whitespace-nowrap group" style="color: var(--brand);">{p('sec_latest_more')} <Icon name="arrow" size={14} className="inline-block align-[-2px] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" /></a>
     </div>
     <NewsList lang={lang} limit={3} />
   </section>
 
   <!-- CTA -->
   <section class="mx-auto max-w-6xl px-4 py-14">
-    <div class="glass p-10 md:p-14 text-center reveal" style="background: linear-gradient(120deg, var(--bg-soft), color-mix(in srgb, var(--brand-glow) 60%, var(--surface)));">
-      <h2 class="text-2xl md:text-4xl font-black tracking-tight">{p('cta_t')}</h2>
-      <p class="mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed" style="color: var(--ink-soft);">{p('cta_d')}</p>
-      <a href="https://github.com/aiDennis/955.life" target="_blank" rel="noopener" class="btn-primary magnetic mt-6">{p('cta_btn')} <Icon name="external" size={15} /></a>
+    <div class="glass relative overflow-hidden p-10 md:p-16 text-center reveal" style="background: linear-gradient(130deg, var(--bg-soft), color-mix(in srgb, var(--brand-glow) 55%, var(--surface)));">
+      <div class="absolute -top-24 -right-16 w-72 h-72 rounded-full -z-0 opacity-60" style="background: radial-gradient(circle, var(--brand-glow), transparent 65%);" aria-hidden="true"></div>
+      <div class="relative">
+        <p class="kicker kicker--center justify-center mb-4">04 · Join</p>
+        <h2 class="text-2xl md:text-4xl font-black tracking-tight">{p('cta_t')}</h2>
+        <p class="mt-4 max-w-xl mx-auto text-sm md:text-base leading-relaxed" style="color: var(--ink-soft);">{p('cta_d')}</p>
+        <a href="https://github.com/aiDennis/955.life" target="_blank" rel="noopener" class="btn-primary magnetic mt-7">{p('cta_btn')} <Icon name="external" size={15} /></a>
+      </div>
     </div>
   </section>
 
   <script is:inline>
+    // 跑马灯：轨道 = 两份相同半幅，半幅必须 ≥ 容器宽，否则循环末段右侧露白；超宽屏按份数翻倍兜底
+    (function () {
+      var track = document.getElementById('ticker-track');
+      if (!track) return;
+      var wrap = track.parentElement;
+      var guard = 0;
+      while (track.scrollWidth / 2 < wrap.clientWidth && guard < 4) {
+        track.innerHTML += track.innerHTML;
+        guard++;
+      }
+      // 恒定速度 60px/s：各语言词长不同，按半幅宽度换算时长，避免滚动忽快忽慢
+      track.style.animationDuration = track.scrollWidth / 2 / 60 + 's';
+    })();
+
     // Magnetic buttons（reveal 由 Base 全局脚本处理）
     document.querySelectorAll('.magnetic').forEach((el) => {
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

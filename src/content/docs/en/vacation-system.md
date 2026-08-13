@@ -3,7 +3,7 @@ title: "Holiday Systems: Weekends, Annual Leave & the 4-Day Week"
 description: "Weekends, 11 statutory holidays, 5-15 days paid leave, the make-up day controversy, and the global 4-day week experiment."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["休假", "双休", "带薪假"]
+tags: ["Leave", "Two-day weekend", "Paid leave"]
 order: 3
 faq:
   - q: "How many days of paid annual leave do I get?"

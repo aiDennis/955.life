@@ -3,7 +3,7 @@ title: "Legal Library: The Laws Behind Work Hours & Leave"
 description: "Core provisions on working hours, overtime and leave from China's Constitution, Labor Law and State Council regulations, with official sources."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["劳动法", "法律", "维权"]
+tags: ["Labor law", "Law", "Workers' rights"]
 order: 6
 faq:
   - q: "How is overtime pay calculated?"

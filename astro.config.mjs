@@ -6,6 +6,11 @@ import tailwindcss from '@tailwindcss/vite';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://955.life',
+  // 视口内链接悬停即预取，站内导航近瞬时（纯静态站，开销可控）
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'hover',
+  },
   i18n: {
     defaultLocale: 'zh-CN',
     locales: ['zh-CN', 'zh-Hant', 'en', 'ja', 'ko', 'de', 'es', 'fr'],

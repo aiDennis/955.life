@@ -4,11 +4,18 @@ import Icon from './Icon.astro';
 interface Props { lang: Locale; }
 const { lang } = Astro.props;
 const p = (k: string) => t(lang, k);
+
 // 快速入口：顶部导航的补充，只留高频目标
 const quickLinks = [
   { href: `/${lang}/companies/`, label: p('nav_companies') },
   { href: `/${lang}/news/`, label: p('nav_news') },
   { href: `/${lang}/resources/`, label: p('nav_resources') },
+];
+// 专题精选：只放入门必读三篇，其余走顶部「专题」下拉
+const topicLinks = [
+  { href: `/${lang}/what-is-955/`, label: p('nav_whatis') },
+  { href: `/${lang}/8-hour-workday/`, label: p('nav_workday') },
+  { href: `/${lang}/vacation-system/`, label: p('nav_vacation') },
 ];
 const external = [
   { href: 'https://github.com/996icu/996.ICU', label: '996.ICU' },
@@ -17,41 +24,54 @@ const external = [
 ];
 ---
 
-<footer class="mt-12 border-t" style="border-color: var(--line); background: var(--bg-soft);">
-  <div class="mx-auto max-w-6xl px-4 py-8 flex flex-col gap-8 md:flex-row md:justify-between">
-    <div>
-      <div class="flex items-center gap-1.5 mb-2.5">
-        <span class="font-black text-xl tracking-tight leading-none" style="color: var(--ink);">955<span class="text-gradient">.life</span></span>
+<footer class="mt-16 border-t" style="border-color: var(--line); background: var(--bg-soft);">
+  <div class="mx-auto max-w-6xl px-4 pt-12 pb-8">
+    <div class="flex flex-col gap-10 md:flex-row md:justify-between">
+      <div class="max-w-xs">
+        <div class="flex items-center gap-1.5 mb-3">
+          <span class="font-display font-black text-2xl tracking-tight leading-none" style="color: var(--ink);">955<span class="text-gradient">.life</span></span>
+        </div>
+        <p class="font-display italic text-sm mb-2" style="color: var(--brand-strong);">Work 955, live first.</p>
+        <p class="text-sm leading-relaxed" style="color: var(--ink-soft);">{p('foot_about_d')}</p>
+        <a href="https://github.com/aiDennis/955.life" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold mt-4 hover:underline" style="color: var(--brand);">
+          <Icon name="external" size={13} /> GitHub
+        </a>
       </div>
-      <p class="text-sm leading-relaxed" style="color: var(--ink-soft);">{p('foot_about_d')}</p>
-      <a href="https://github.com/aiDennis/955.life" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-xs font-semibold mt-3 hover:underline" style="color: var(--brand);">
-        <Icon name="external" size={13} /> GitHub
-      </a>
-    </div>
 
-    <!-- 快速入口 + 相关项目：移动端并排两列，桌面保持两栏靠右 -->
-    <div class="grid grid-cols-2 gap-8 md:flex md:gap-16">
-      <nav aria-label="Footer">
-        <h3 class="text-sm font-bold mb-2.5">{p('foot_links')}</h3>
-        <ul class="space-y-1.5">
-          {quickLinks.map((l) => (
-            <li><a href={l.href} class="text-sm hover:underline" style="color: var(--ink-soft);">{l.label}</a></li>
-          ))}
-        </ul>
-      </nav>
+      <!-- 三栏链接：移动端两列，桌面三栏靠右 -->
+      <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:gap-14">
+        <nav aria-label="Footer topics">
+          <h3 class="kicker !text-[0.68rem] mb-3">{p('nav_topics')}</h3>
+          <ul class="space-y-1.5">
+            {topicLinks.map((l) => (
+              <li><a href={l.href} class="text-sm hover:underline" style="color: var(--ink-soft);">{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
 
-      <div>
-        <h3 class="text-sm font-bold mb-2.5">{p('foot_resources')}</h3>
-        <ul class="space-y-1.5">
-          {external.map((l) => (
-            <li><a href={l.href} target="_blank" rel="noopener" class="text-sm hover:underline inline-flex items-center gap-1" style="color: var(--ink-soft);">{l.label} <Icon name="external" size={12} /></a></li>
-          ))}
-        </ul>
+        <nav aria-label="Footer">
+          <h3 class="kicker !text-[0.68rem] mb-3">{p('foot_links')}</h3>
+          <ul class="space-y-1.5">
+            {quickLinks.map((l) => (
+              <li><a href={l.href} class="text-sm hover:underline" style="color: var(--ink-soft);">{l.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+
+        <div>
+          <h3 class="kicker !text-[0.68rem] mb-3">{p('foot_resources')}</h3>
+          <ul class="space-y-1.5">
+            {external.map((l) => (
+              <li><a href={l.href} target="_blank" rel="noopener" class="text-sm hover:underline inline-flex items-center gap-1" style="color: var(--ink-soft);">{l.label} <Icon name="external" size={12} /></a></li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </div>
+
   <div class="border-t" style="border-color: var(--line);">
-    <div class="mx-auto max-w-6xl px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-1.5 text-xs" style="color: var(--ink-soft); opacity: 0.75;">
+    <div class="mx-auto max-w-6xl px-4 py-3.5 flex flex-col md:flex-row items-center justify-between gap-1.5 text-xs" style="color: var(--ink-soft); opacity: 0.75;">
       <p>{p('foot_rights')}</p>
       <div class="flex items-center gap-3">
         <a href="/sitemap.xml" class="hover:underline">{p('foot_sitemap')}</a>

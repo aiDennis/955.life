@@ -3,7 +3,7 @@ title: "Recursos: proyectos, datos y canales de derechos"
 description: "Proyectos de código abierto relacionados (996.ICU, 955.WLB, 944.Life), fuentes de datos y canales de derechos laborales."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["资源", "开源"]
+tags: ["Recursos", "Código abierto"]
 order: 7
 ---
 ## Proyectos relacionados

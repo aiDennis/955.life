@@ -3,7 +3,7 @@ title: "What is the 955 Work Schedule?"
 description: "The 955 schedule means 9 AM to 5 PM, 5 days a week — the opposite of 996, representing work-life balance."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["955", "概念"]
+tags: ["955", "Concept"]
 faq:
   - q: "What is the difference between 955 and 996?"
     a: "955 means 9-to-5, 5 days a week (~40 hours); 996 means 9-to-9, 6 days a week (~72 hours). 955 falls within most countries' statutory working hours; 996 far exceeds them."
@@ -11,6 +11,10 @@ faq:
     a: "Yes. China's Labor Law caps work at 8 hours/day and 40 hours/week (standard working hours); 955 is right at the legal limit."
   - q: "Which companies practice 955?"
     a: "See the 955 company whitelist on this site — 86 community-maintained companies across 7 industries, filterable by city."
+  - q: "Is 955 the same as 9-to-5?"
+    a: "Yes — 955 is simply how \"9-to-5\" is expressed in Chinese context."
+  - q: "How much statutory annual leave in China?"
+    a: "5/10/15 days depending on tenure (Regulations on Paid Annual Leave)."
 order: 1
 ---
 **The 955 schedule**: clock in at 9 AM, clock out at 5 PM, five days a week — roughly 40 hours, right within most countries' statutory working-time limits.
@@ -28,14 +32,3 @@ Start with the boring part: it's legal. China's Labor Law caps the workday at 8 
 Health comes next. WHO and ILO research shows that working more than 55 hours a week noticeably raises the risk of stroke and heart disease. No overtime check is worth that.
 
 And then there's efficiency. From Ford's 8-hour day to the four-day pilots in Iceland and the UK, cutting hours didn't cut output. It often went up.
-
-## FAQ
-
-**Q: Is 955 the same as 9-to-5?**
-Yes — 955 is simply how "9-to-5" is expressed in Chinese context.
-
-**Q: How much statutory annual leave in China?**
-5/10/15 days depending on tenure (Regulations on Paid Annual Leave).
-
-**Q: Where can I find the 955 company list?**
-See the "955 Companies" section — a community-maintained whitelist filterable by city and industry.

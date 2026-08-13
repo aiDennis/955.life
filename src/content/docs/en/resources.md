@@ -3,7 +3,7 @@ title: "Resources: Projects, Data & Rights Channels"
 description: "Related open-source projects (996.ICU, 955.WLB, 944.Life), authoritative data sources and labor-rights channels."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["资源", "开源"]
+tags: ["Resources", "Open source"]
 order: 7
 ---
 ## Related open-source projects

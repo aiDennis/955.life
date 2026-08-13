@@ -3,7 +3,7 @@ title: "Sozialleistungen im Vergleich: von der Sozialversicherung bis zur Eltern
 description: "Sozialversicherung, Mutterschutz und Elternzeit, Lohnfortzahlung im Krankheitsfall — ein Weltvergleich."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["福利", "社保", "育儿假"]
+tags: ["Sozialleistungen", "Sozialversicherung", "Elternzeit"]
 order: 4
 ---
 Weniger Überstunden helfen nur, wenn die Grundlagen stehen. Ein 955-Leben braucht nicht nur „weniger Stunden", sondern „echte Sicherheit".

@@ -3,7 +3,7 @@ title: "Gesetzesbibliothek: Rechtsgrundlagen für Arbeitszeit & Urlaub"
 description: "Kernbestimmungen zu Arbeitszeit, Überstunden und Urlaub aus Verfassung, Arbeitsgesetz und Staatsratsverordnung mit offiziellen Quellen."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["劳动法", "法律", "维权"]
+tags: ["Arbeitsrecht", "Recht", "Rechtsschutz"]
 order: 6
 ---
 ## Verfassung

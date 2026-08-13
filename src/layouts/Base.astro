@@ -17,6 +17,18 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 const pathParts = Astro.url.pathname.split('/').filter(Boolean); // [zh-cn, what-is-955]
 const slug = pathParts.slice(1).join('/');
 const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
+
+/** og:locale 要求下划线格式（zh_CN）；zh-Hant 取最接近的注册 locale zh_TW */
+const ogLocaleMap: Record<Locale, string> = {
+  'zh-CN': 'zh_CN',
+  'zh-Hant': 'zh_TW',
+  en: 'en_US',
+  ja: 'ja_JP',
+  ko: 'ko_KR',
+  de: 'de_DE',
+  es: 'es_ES',
+  fr: 'fr_FR',
+};
 ---
 
 <!DOCTYPE html>
@@ -30,6 +42,11 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonical} />
+
+    <!-- 展示字体预加载：只预取罗马体（36KB）；斜体用量少，交给 font-display: swap 自然加载 -->
+    <link rel="preload" href="/fonts/fraunces-latin-wght.woff2" as="font" type="font/woff2" crossorigin />
+
+    <!-- 无 JS 兜底：reveal 靠 IntersectionObserver 加 .visible，脚本不可用时须直接可见 -->
 
     <!-- hreflang：8 语言互指 + x-default -->
     {locales.map((l) => <link rel="alternate" hreflang={l} href={altUrl(l)} />)}
@@ -45,27 +62,14 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content={lang} />
+    <meta property="og:locale" content={ogLocaleMap[lang]} />
+    {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocaleMap[l]} />)}
     <meta property="og:image" content="https://955.life/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="theme-color" content="#F97316" />
+    <meta name="theme-color" content="#EE6A1D" />
 
-    <!-- Matomo 统计 -->
-    <script is:inline>
-      var _paq = window._paq = window._paq || [];
-      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="https://a.w3to.dev/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '15']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-    </script>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DW7JKS4EXW"></script>
     <script is:inline>
@@ -91,6 +95,8 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
     <script is:inline>
       // Theme init — avoid flash of wrong theme
       (function () {
+        // .reveal 的初始隐藏只在这个 class 存在时生效：脚本不可用时内容直接可见，不会整片空白
+        document.documentElement.classList.add('js');
         try {
           var stored = localStorage.getItem('theme');
           var dark = stored
@@ -98,7 +104,7 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
             : window.matchMedia('(prefers-color-scheme: dark)').matches;
           document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
           var tc = document.querySelector('meta[name="theme-color"]');
-          if (tc) tc.setAttribute('content', dark ? '#0B1220' : '#F97316');
+          if (tc) tc.setAttribute('content', dark ? '#100C1C' : '#EE6A1D');
         } catch (e) {
           document.documentElement.setAttribute('data-theme', 'light');
         }
@@ -111,6 +117,21 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
       <slot />
     </main>
     <Footer lang={lang} />
+
+    <!-- Matomo 统计（置于 body 末尾，不阻塞首屏渲染） -->
+    <script is:inline>
+      var _paq = window._paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="https://a.w3to.dev/";
+        _paq.push(['setTrackerUrl', u+'matomo.php']);
+        _paq.push(['setSiteId', '15']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
 
     <!-- 全局滚动渐入（reveal）：所有页面生效，尊重 prefers-reduced-motion -->
     <script is:inline>
@@ -134,6 +155,34 @@ const altUrl = (l: string) => `https://955.life/${l}/${slug}${slug ? '/' : ''}`;
         );
         els.forEach(function (el) { io.observe(el); });
       });
+    </script>
+
+    <!-- 弹层（details[data-popover]）：点击外部 / Esc 关闭 -->
+    <script is:inline>
+      (function () {
+        function closeAll(except) {
+          document.querySelectorAll('details[data-popover][open]').forEach(function (d) {
+            if (d !== except) d.removeAttribute('open');
+          });
+        }
+        document.addEventListener('click', function (e) {
+          var inside = e.target.closest && e.target.closest('details[data-popover]');
+          if (inside) {
+            if (e.target.closest('summary')) {
+              // 只关别的弹层：被点的这个交给 <details> 原生 toggle，
+              // 否则这里摘掉 open 后原生行为又会把它切回打开，等于关不掉
+              closeAll(inside);
+            } else if (e.target.closest('a')) {
+              closeAll(null);
+            }
+          } else {
+            closeAll(null);
+          }
+        });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape') closeAll(null);
+        });
+      })();
     </script>
   </body>
 </html>

@@ -3,7 +3,7 @@ title: "Work Intensity: Data, Karoshi & a Timeline of Cases"
 description: "Working-hours data, WHO overwork research, and a 2016-2026 timeline of labor cases — intensity matters."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["工作强度", "过劳", "数据"]
+tags: ["Work intensity", "Overwork", "Data"]
 order: 5
 ---
 The more hours you work, the thinner your life gets. That's the problem 955 is trying to fix.

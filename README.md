@@ -6,8 +6,8 @@
 
 ## 技术栈
 
-- **Astro 5**（SSG 静态生成，SEO 天花板）
-- **Tailwind CSS v4**（日落下班主题：橙 → 深蓝渐变，明暗切换）
+- **Astro 5**（SSG 静态生成，SEO 天花板，hover 预取）
+- **Tailwind CSS v4**（"Golden Hour" 设计系统：暖纸/夜梅双主题，Fraunces 衬线展示字体自托管）
 - 8 语言 i18n：zh-CN / zh-Hant / en / ja / ko / de / es / fr
 - 内容：Content Collections（Markdown，56 篇文章 = 7 板块 × 8 语言）
 - 数据：955 公司白名单（JSON，86 家公司，来自 955.WLB）+ 全球劳动数据 + 新闻动态

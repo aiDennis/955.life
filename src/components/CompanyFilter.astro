@@ -34,6 +34,7 @@ const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ??
 
 <section class="mx-auto max-w-6xl px-4 pt-10 pb-16">
   <div class="text-center mb-8 reveal">
+    <p class="kicker kicker--center justify-center mb-4">955 · Companies</p>
     <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">{p('co_t')}</h1>
     <p class="mt-3 max-w-2xl mx-auto text-sm leading-relaxed" style="color: var(--ink-soft);">{p('co_d')}</p>
   </div>
@@ -45,7 +46,7 @@ const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ??
         id="co-search"
         type="search"
         placeholder={p('co_search')}
-        class="flex-1 min-w-52 px-4 py-2.5 rounded-full border outline-none text-sm transition-colors focus:border-orange-400"
+        class="flex-1 min-w-52 px-4 py-2.5 rounded-xl border outline-none text-sm transition-colors focus:border-orange-400"
         style="border-color: var(--line); background: var(--bg); color: var(--ink);"
       />
       <button id="co-query" type="button" class="btn-primary text-sm">{p('co_query')}</button>
@@ -54,28 +55,34 @@ const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ??
     <div class="mt-4">
       <p class="text-xs font-semibold mb-2" style="color: var(--ink-soft);">{p('co_city')}</p>
       <div id="co-cities" class="flex flex-wrap gap-2">
-        <button class="chip active" data-city="">{p('co_all')}</button>
-        {cities.map((c) => <button class="chip" data-city={c}>{cityNamesOf(c)}</button>)}
+        <button type="button" class="chip active" data-city="">{p('co_all')}</button>
+        {cities.map((c) => <button type="button" class="chip" data-city={c}>{cityNamesOf(c)}</button>)}
       </div>
     </div>
 
     <div class="mt-4">
       <p class="text-xs font-semibold mb-2" style="color: var(--ink-soft);">{p('co_industry')}</p>
       <div id="co-industries" class="flex flex-wrap gap-2">
-        <button class="chip active" data-ind="">{p('co_all')}</button>
-        {industries.map((ind) => <button class="chip" data-ind={ind}>{(industryNames[lang] ?? industryNames['zh-CN'])[ind]}</button>)}
+        <button type="button" class="chip active" data-ind="">{p('co_all')}</button>
+        {industries.map((ind) => <button type="button" class="chip" data-ind={ind}>{(industryNames[lang] ?? industryNames['zh-CN'])[ind]}</button>)}
       </div>
     </div>
   </div>
 
-  <p id="co-count" class="text-sm mb-4 font-semibold" style="color: var(--ink-soft);" aria-live="polite"></p>
+  <p id="co-count" class="text-sm mb-4 font-semibold" style="color: var(--ink-soft);" aria-live="polite">{companies.length} {p('co_count')}</p>
 
-  <!-- SSR 预渲染全部公司（爬虫可见；JS 接管筛选后重绘） -->
+  <!-- SSR 预渲染全部公司（爬虫可见）；筛选通过显隐 DOM 完成，无内嵌 JSON 双份载荷 -->
   <div id="co-grid" class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" role="list" aria-live="polite">
     {companies.map((c) => (
-      <article class="glass p-4" role="listitem">
+      <article
+        class="glass co-card p-4"
+        role="listitem"
+        data-name={c.name.toLowerCase()}
+        data-cities={c.cities.join(' ')}
+        data-ind={c.industry}
+      >
         <div class="flex items-start justify-between gap-2">
-          <h3 class="font-bold text-[15px]">{c.name}</h3>
+          <h3 class="font-bold text-[15px] leading-snug">{c.name}</h3>
           <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0" style="border:1px solid var(--line); color:var(--ink-soft);">{(industryNames[lang] ?? industryNames['zh-CN'])[c.industry] ?? c.industry}</span>
         </div>
         <p class="mt-1.5 text-xs inline-flex items-center gap-1" style="color: var(--ink-soft);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.1-6-10a6 6 0 1 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg> {c.cities.map((x) => cityNamesOf(x)).join(' · ')}</p>
@@ -89,55 +96,42 @@ const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ??
   </p>
 </section>
 
-<script type="application/json" id="co-data" set:html={JSON.stringify(companies)}></script>
-<script type="application/json" id="co-ind" set:html={JSON.stringify(industryNames[lang] ?? industryNames['zh-CN'])}></script>
-<script type="application/json" id="co-city" set:html={JSON.stringify(cityNames[lang] ?? cityNames['zh-CN'])}></script>
-<script type="application/json" id="co-labels" set:html={JSON.stringify({ count: p('co_count') })}></script>
-
 <script>
-  const listEl = document.getElementById('co-grid');
-  const emptyEl = document.getElementById('co-empty');
-  const countEl = document.getElementById('co-count');
-  const searchEl = document.getElementById('co-search');
-  const data = JSON.parse(document.getElementById('co-data').textContent);
-  const indNames = JSON.parse(document.getElementById('co-ind').textContent);
-  const cityNames = JSON.parse(document.getElementById('co-city').textContent);
-  const labels = JSON.parse(document.getElementById('co-labels').textContent);
+  /**
+   * 公司筛选：直接显隐 SSR 渲染的卡片（卡片上带 data-name/data-cities/data-ind），
+   * 不再内嵌 JSON、不做 innerHTML 重绘 —— 页面体积减半，且无需转义。
+   */
+  const listEl = document.getElementById('co-grid')!;
+  const emptyEl = document.getElementById('co-empty')!;
+  const countEl = document.getElementById('co-count')!;
+  const searchEl = document.getElementById('co-search') as HTMLInputElement;
+  /** 计数文案模板（如 "86 家公司"），运行时只替换数字部分 */
+  const countTemplate = countEl.textContent ?? '';
+  const cards = Array.from(listEl.children) as HTMLElement[];
   let city = '';
   let ind = '';
   let q = '';
 
-  function esc(s: string): string {
-    return String(s).replace(/[&<>"']/g, (m) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]!));
-  }
-
   function render() {
-    const rows = data.filter((c) => {
-      const okCity = !city || c.cities.includes(city);
-      const okInd = !ind || c.industry === ind;
-      const okQ = !q || c.name.toLowerCase().includes(q.toLowerCase());
-      return okCity && okInd && okQ;
-    });
-    countEl.textContent = `${rows.length} ${labels.count}`;
-    emptyEl.classList.toggle('hidden', rows.length > 0);
-    listEl.innerHTML = rows
-      .map(
-        (c) => `<article class="glass p-4" role="listitem">
-          <div class="flex items-start justify-between gap-2">
-            <h3 class="font-bold text-[15px]">${esc(c.name)}</h3>
-            <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full shrink-0" style="border:1px solid var(--line); color:var(--ink-soft);">${esc(indNames[c.industry] ?? c.industry)}</span>
-          </div>
-          <p class="mt-1.5 text-xs inline-flex items-center gap-1" style="color: var(--ink-soft);"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.1-6-10a6 6 0 1 1 12 0c0 4.9-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg> ${c.cities.map((x) => esc(cityNames[x] ?? x)).join(' · ')}</p>
-        </article>`
-      )
-      .join('');
+    const query = q.toLowerCase();
+    let visible = 0;
+    for (const card of cards) {
+      const okCity = !city || (card.dataset.cities ?? '').split(' ').includes(city);
+      const okInd = !ind || card.dataset.ind === ind;
+      const okQ = !query || (card.dataset.name ?? '').includes(query);
+      const show = okCity && okInd && okQ;
+      card.hidden = !show;
+      if (show) visible++;
+    }
+    countEl.textContent = countTemplate.replace(/\d+/, String(visible));
+    emptyEl.classList.toggle('hidden', visible > 0);
   }
 
   document.querySelectorAll('#co-cities .chip').forEach((b) =>
     b.addEventListener('click', () => {
       document.querySelectorAll('#co-cities .chip').forEach((x) => x.classList.remove('active'));
       b.classList.add('active');
-      city = b.dataset.city;
+      city = (b as HTMLElement).dataset.city ?? '';
       render();
     })
   );
@@ -145,21 +139,30 @@ const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ??
     b.addEventListener('click', () => {
       document.querySelectorAll('#co-industries .chip').forEach((x) => x.classList.remove('active'));
       b.classList.add('active');
-      ind = b.dataset.ind;
+      ind = (b as HTMLElement).dataset.ind ?? '';
       render();
     })
   );
-  searchEl.addEventListener('input', (e) => {
-    q = e.target.value.trim();
+  searchEl.addEventListener('input', () => {
+    q = searchEl.value.trim();
     render();
   });
-  document.getElementById('co-query')?.addEventListener('click', function () {
+  document.getElementById('co-query')?.addEventListener('click', () => {
     render();
-    if (listEl.children.length > 0) {
+    if (visibleCount() > 0) {
       listEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
       searchEl.focus();
     }
   });
-  render();
+
+  function visibleCount(): number {
+    return cards.filter((c) => !c.hidden).length;
+  }
+
+  // 软刷新/前进后退时浏览器会恢复输入框内容，此时 SSR 的全量列表与关键词对不上，需要补一次筛选
+  if (searchEl.value.trim()) {
+    q = searchEl.value.trim();
+    render();
+  }
 </script>

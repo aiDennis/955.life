@@ -3,7 +3,7 @@ title: "Der 8-Stunden-Tag: von Ford zum Gesetz"
 description: "Geschichte, Rechtsgrundlagen und Status des 8-Stunden-Tags: Chicago 1886, Ford 1914, ILO-Abkommen, Chinas Arbeitsgesetz."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["8小时工作制", "劳动法"]
+tags: ["8-Stunden-Tag", "Arbeitsrecht"]
 order: 2
 ---
 Der 8-Stunden-Tag ist der rechtliche Eckpfeiler eines 955-Lebens — ein Standard, den Arbeiterbewegungen erkämpft haben.

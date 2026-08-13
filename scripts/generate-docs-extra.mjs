@@ -1,6 +1,10 @@
-// Generate full content for remaining 6 slugs x 8 locales (overwrites TODO placeholders)
-import { writeFileSync, mkdirSync } from 'node:fs';
+// Generate full content for remaining 6 slugs x 8 locales
+// 脚本内的数据可能滞后于线上正文（工时等已在 content 里更新过），因此默认跳过已存在的文件，
+// 只给新语种打底；确需回退到脚本版本时显式加 --force。
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
+
+const FORCE = process.argv.includes('--force');
 
 const ROOT = new URL('../src/content/docs/', import.meta.url).pathname;
 const DATE = '2026-08-06';
@@ -844,10 +848,15 @@ for (const doc of S) {
   for (const lang of Object.keys(doc.meta)) {
     const dir = join(ROOT, lang);
     mkdirSync(dir, { recursive: true });
+    const target = join(dir, `${doc.slug}.md`);
+    if (existsSync(target) && !FORCE) {
+      console.log(`skip ${lang}/${doc.slug}.md（已存在）`);
+      continue;
+    }
     const [title, desc] = doc.meta[lang];
     const body = doc.body[lang];
     const file = `${body}\n`;
-    writeFileSync(join(dir, `${doc.slug}.md`), fm(title, desc, doc.tags) + file);
+    writeFileSync(target, fm(title, desc, doc.tags) + file);
     console.log(`wrote ${lang}/${doc.slug}.md`);
   }
 }

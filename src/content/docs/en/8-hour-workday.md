@@ -3,7 +3,7 @@ title: "The 8-Hour Workday: From Ford to Law"
 description: "History, legal basis and global status of the 8-hour workday: 1886 Chicago, 1914 Ford, ILO conventions, China's labor law."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["8小时工作制", "劳动法"]
+tags: ["8-hour workday", "Labor law"]
 order: 2
 faq:
   - q: "Is the 8-hour workday a legal requirement?"

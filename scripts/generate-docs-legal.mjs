@@ -1,6 +1,9 @@
-// Generate laws + resources content (overwrites TODO placeholders)
-import { writeFileSync, mkdirSync } from 'node:fs';
+// Generate laws + resources content
+// 与其它生成脚本一致：默认跳过已存在文件，避免覆盖人工润色的正文；强制重写用 --force。
+import { writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+
+const FORCE = process.argv.includes('--force');
 
 const ROOT = new URL('../src/content/docs/', import.meta.url).pathname;
 const DATE = '2026-08-06';
@@ -449,9 +452,14 @@ for (const [name, doc] of [['laws', laws], ['resources', resources]]) {
   for (const lang of Object.keys(doc.meta)) {
     const dir = join(ROOT, lang);
     mkdirSync(dir, { recursive: true });
+    const target = join(dir, `${name}.md`);
+    if (existsSync(target) && !FORCE) {
+      console.log(`skip ${lang}/${name}.md（已存在）`);
+      continue;
+    }
     const [title, desc] = doc.meta[lang];
     const file = `${doc.body[lang]}\n`;
-    writeFileSync(join(dir, `${name}.md`), fm(title, desc, doc.tags) + file);
+    writeFileSync(target, fm(title, desc, doc.tags) + file);
     console.log(`wrote ${lang}/${name}.md`);
   }
 }

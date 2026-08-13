@@ -26,16 +26,17 @@ const sourceNames: Record<string, string> = {
   'henan': { 'zh-CN': '河南省委组织部等', 'zh-Hant': '河南省委組織部等', en: 'Henan Org. Dept. et al.', ja: '河南省党委組織部など', ko: '허난성 당위 조직부 등', de: 'Organisationsabt. der Provinz Henan u. a.', es: 'Dpto. de Organización de Henan y otros', fr: 'Département de l\'Organisation du Henan et al.' }[lang] ?? '河南省委组织部等',
   'baixing': { 'zh-CN': '百姓关注', 'zh-Hant': '百姓關注', en: 'Public Focus', ja: '百姓関注', ko: '백성관주', de: 'Public Focus', es: 'Public Focus', fr: 'Public Focus' }[lang] ?? '百姓关注',
 };
-const tagOf = (k: string) => tagNames[k] ?? tagNames[k as keyof typeof tagNames] ?? '政策';
-const sourceOf = (k: string) => sourceNames[k] ?? sourceNames[k as keyof typeof sourceNames] ?? '';
+const tagOf = (k: string) => tagNames[k] ?? '政策';
+const sourceOf = (k: string) => sourceNames[k] ?? '';
 ---
 
 <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
   {
-    items.map((n) => (
-      <article class="glass p-5 md:p-6 flex flex-col">
+    items.map((n, i) => (
+      <article class="glass news-card p-5 md:p-6 flex flex-col reveal" style={`--reveal-delay: ${(i % 3) * 90}ms`}>
         <div class="flex items-center gap-2.5 mb-3">
-          <time class="text-xs font-bold tracking-wide" style="color: var(--brand);">{n.date}</time>
+          <time class="font-display italic text-sm font-semibold tracking-wide" style="color: var(--brand);">{n.date}</time>
+          <span class="h-3 w-px" style="background: var(--line);"></span>
           <span class="text-[10px] font-semibold px-2 py-0.5 rounded-full whitespace-nowrap" style="border:1px solid var(--line); color: var(--ink-soft);">{tagOf(n.tagKey)}</span>
         </div>
         <h3 class="text-[15px] md:text-base font-bold leading-snug mb-2.5" style="color: var(--ink);">{isZh ? n.titleZh : n.titleEn}</h3>

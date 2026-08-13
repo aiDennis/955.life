@@ -7,7 +7,7 @@ const label = t(lang, 'theme_toggle');
 
 <button
   id="theme-toggle"
-  class="w-10 h-10 grid place-items-center rounded-full border transition-colors"
+  class="w-10 h-10 grid place-items-center rounded-full border transition-colors hover:border-[var(--brand)]"
   style="border-color: var(--line);"
   aria-label={label}
   title={label}
@@ -22,20 +22,20 @@ const label = t(lang, 'theme_toggle');
 
 <script is:inline>
   (function () {
-    const btn = document.getElementById('theme-toggle');
-    const sun = document.getElementById('icon-sun');
-    const moon = document.getElementById('icon-moon');
+    var btn = document.getElementById('theme-toggle');
+    var sun = document.getElementById('icon-sun');
+    var moon = document.getElementById('icon-moon');
     function apply(theme) {
-      const dark = theme === 'dark';
+      var dark = theme === 'dark';
       document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-      const tc = document.querySelector('meta[name="theme-color"]');
-      if (tc) tc.setAttribute('content', dark ? '#0B1220' : '#F97316');
+      var tc = document.querySelector('meta[name="theme-color"]');
+      if (tc) tc.setAttribute('content', dark ? '#100C1C' : '#EE6A1D');
       sun.classList.toggle('hidden', dark);
       moon.classList.toggle('hidden', !dark);
     }
     apply(localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
     btn.addEventListener('click', function () {
-      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      var next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       localStorage.setItem('theme', next);
       apply(next);
     });

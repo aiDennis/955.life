@@ -3,7 +3,7 @@ title: "Bibliothèque juridique : les lois derrière le temps de travail et les 
 description: "Dispositions clés sur la durée du travail, les heures sup. et les congés (Constitution, Code du travail, règlement du Conseil d'État), avec sources officielles."
 date: "2026-08-06"
 updated: "2026-08-06"
-tags: ["劳动法", "法律", "维权"]
+tags: ["Droit du travail", "Droit", "Défense des droits"]
 order: 6
 ---
 ## Constitution
