@@ -12,6 +12,15 @@ export interface NewsItem {
 export const newsItems: NewsItem[] = [
   {
     date: '2026-08',
+    titleZh: '胖东来回应 40 天带薪年假：全年带薪休假累计 145 天',
+    titleEn: 'Pangdonglai: 40 days paid leave, 145 paid days off a year',
+    descZh: '河南新政引发热议后，胖东来客服确认：工龄满 1 年员工每年享 40 天带薪假期（30 天年假 + 10 天"不开心假"），叠加每周二全门店闭店、春节闭店、11 天法定节假日，全年带薪休假累计约 145 天。胖东来实行每日 6-7 小时工作制、每周不超 36 小时、严禁加班（安排加班管理人员罚款 5000 元）。创始人于东来多次发文呼吁推广 20-40 天年休假制度。',
+    descEn: 'After Henan\'s new leave policy went viral, Pangdonglai confirmed: staff with 1+ years of service get 40 paid days a year (30 days annual leave + 10 "unhappy days"), plus Tuesday store closures, Spring Festival closure and 11 statutory holidays — about 145 paid days off in total. The company runs 6-7 hour days, under 36 hours a week, and bans overtime (managers fined ¥5,000 for scheduling it). Founder Yu Donglai repeatedly urges a national 20-40 day annual leave standard.',
+    sourceKey: 'reports',
+    tagKey: 'flex',
+  },
+  {
+    date: '2026-08',
     titleZh: '河南六部门发文：领导干部带头休假，全员"应休尽休"',
     titleEn: 'Henan: leaders must take leave first, all staff rest in full',
     descZh: '河南省委组织部等六部门印发《关于进一步推动落实职工带薪错峰休假的通知》：单位主要负责人为第一责任人、领导干部带头休假，推动全员应休尽休、休满休足；无法休假按日工资收入 300% 支付；试行"周五半天+周末+年假"短途度假模式。天津、云南、贵州等省份同步跟进，话题登上微博热搜。',

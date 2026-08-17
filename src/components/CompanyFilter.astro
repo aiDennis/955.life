@@ -21,13 +21,13 @@ const industries = Object.keys(industryNames[lang] ?? industryNames['zh-CN']);
 // 城市 8 语言显示名（zh-CN 键；筛选逻辑仍用原始值）
 const cityNames: Record<Locale, Record<string, string>> = {
   'zh-CN': Object.fromEntries(cities.map((c) => [c, c])),
-  'zh-Hant': { 北京: '北京', 上海: '上海', 广州: '廣州', 深圳: '深圳', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '廈門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港' },
-  en: { 北京: 'Beijing', 上海: 'Shanghai', 广州: 'Guangzhou', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
-  ja: { 北京: '北京', 上海: '上海', 广州: '広州', 深圳: '深セン', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '厦門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港' },
-  ko: { 北京: '베이징', 上海: '상하이', 广州: '광저우', 深圳: '선전', 杭州: '항저우', 成都: '청두', 南京: '난징', 苏州: '쑤저우', 武汉: '우한', 西安: '시안', 厦门: '샤먼', 合肥: '허페이', 无锡: '우시', 大连: '다롄', 香港: '홍콩' },
-  de: { 北京: 'Peking', 上海: 'Shanghai', 广州: 'Kanton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hongkong' },
-  es: { 北京: 'Pekín', 上海: 'Shanghái', 广州: 'Cantón', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankín', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
-  fr: { 北京: 'Pékin', 上海: 'Shanghai', 广州: 'Canton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankin', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong' },
+  'zh-Hant': { 北京: '北京', 上海: '上海', 广州: '廣州', 深圳: '深圳', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '廈門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港', 许昌: '許昌' },
+  en: { 北京: 'Beijing', 上海: 'Shanghai', 广州: 'Guangzhou', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong', 许昌: 'Xuchang' },
+  ja: { 北京: '北京', 上海: '上海', 广州: '広州', 深圳: '深セン', 杭州: '杭州', 成都: '成都', 南京: '南京', 苏州: '蘇州', 武汉: '武漢', 西安: '西安', 厦门: '厦門', 合肥: '合肥', 无锡: '無錫', 大连: '大連', 香港: '香港', 许昌: '許昌' },
+  ko: { 北京: '베이징', 上海: '상하이', 广州: '광저우', 深圳: '선전', 杭州: '항저우', 成都: '청두', 南京: '난징', 苏州: '쑤저우', 武汉: '우한', 西安: '시안', 厦门: '샤먼', 合肥: '허페이', 无锡: '우시', 大连: '다롄', 香港: '홍콩', 许昌: '쉬창' },
+  de: { 北京: 'Peking', 上海: 'Shanghai', 广州: 'Kanton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nanjing', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hongkong', 许昌: 'Xuchang' },
+  es: { 北京: 'Pekín', 上海: 'Shanghái', 广州: 'Cantón', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankín', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong', 许昌: 'Xuchang' },
+  fr: { 北京: 'Pékin', 上海: 'Shanghai', 广州: 'Canton', 深圳: 'Shenzhen', 杭州: 'Hangzhou', 成都: 'Chengdu', 南京: 'Nankin', 苏州: 'Suzhou', 武汉: 'Wuhan', 西安: "Xi'an", 厦门: 'Xiamen', 合肥: 'Hefei', 无锡: 'Wuxi', 大连: 'Dalian', 香港: 'Hong Kong', 许昌: 'Xuchang' },
 };
 const cityNamesOf = (c: string) => (cityNames[lang] ?? cityNames['zh-CN'])[c] ?? c;
 ---

@@ -24,6 +24,8 @@ Nouvel An 1, Fête du Printemps 3, Qingming 1, Fête du Travail 1, Bateau-Dragon
 
 Monde : Espagne ~30, Allemagne 20, Japon 10 — les États-Unis n'ont **aucun** congé fédéral obligatoire.
 
+Contraste national : le distributeur Pangdonglai (Henan) offre dès 1 an d'ancienneté 30 jours de congé plus 10 « jours de mauvaise humeur » — avec les fermetures du mardi, environ **145 jours payés par an**, plus du double du plafond légal, un record dans la distribution.
+
 ## La semaine de 4 jours
 
 - **Islande (2015-2019)** : ~2 500 personnes salariées, 35-36 h — **productivité maintenue ou en hausse**.

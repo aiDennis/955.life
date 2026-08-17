@@ -24,6 +24,8 @@ Neujahr 1, Frühlingsfest 3, Qingming 1, Tag der Arbeit 1, Drachenboot 1, Mondfe
 
 Weltweit: Spanien ~30, Deutschland 20, Japan 10 — die USA haben **keinen** gesetzlichen Urlaub.
 
+Inländischer Kontrast: Der Einzelhändler Pangdonglai in Henan gewährt ab 1 Jahr Betriebszugehörigkeit 30 Urlaubstage plus 10 „Unmutstage" — zusammen mit den Dienstags-Schließungen rund **145 bezahlte freie Tage im Jahr**, mehr als das Doppelte der gesetzlichen Obergrenze und ein Branchenrekord im Einzelhandel.
+
 ## Die 4-Tage-Woche
 
 - **Island (2015-2019)**: ~2.500 Beschäftigte, 35-36 Stunden — **Produktivität hielt oder stieg**.

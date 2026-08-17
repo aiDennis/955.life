@@ -84,5 +84,6 @@
   { "name": "Works Applications", "cities": ["上海"], "industry": "tech" },
   { "name": "XMind", "cities": ["深圳"], "industry": "tech" },
   { "name": "Zhihu 知乎", "cities": ["北京"], "industry": "tech" },
-  { "name": "Zoom", "cities": ["合肥", "杭州", "苏州"], "industry": "tech" }
+  { "name": "Zoom", "cities": ["合肥", "杭州", "苏州"], "industry": "tech" },
+  { "name": "胖东来 Pang Dong Lai", "cities": ["许昌"], "industry": "retail" }
 ]

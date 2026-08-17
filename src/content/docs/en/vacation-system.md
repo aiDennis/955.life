@@ -33,6 +33,8 @@ Under China's Paid Annual Leave Regulations: 1-10 years tenure → **5 days**; 1
 
 Global comparison: Spain ~30 days, Germany 20, Japan 10 — while the US has **no** federal statutory paid leave.
 
+Domestic contrast: Henan retailer Pangdonglai gives staff with 1+ years of service 30 days annual leave plus 10 "unhappy days" — with Tuesday store closures, about **145 paid days off a year**, more than twice the statutory cap and a retail-industry record.
+
 ## The 4-day week: from pilot to reality
 
 - **Iceland (2015-2019)**: ~2,500 workers trialed 35-36 hour weeks — **productivity held or rose**, wellbeing jumped.

@@ -24,6 +24,8 @@ Año Nuevo 1, Festival de Primavera 3, Qingming 1, Día del Trabajo 1, Barco del
 
 Mundo: España ~30, Alemania 20, Japón 10 — EE. UU. no tiene vacaciones federales obligatorias.
 
+Contraste nacional: el minorista Pangdonglai (Henan) ofrece desde 1 año de antigüedad 30 días de vacaciones más 10 «días de mal humor» — con los cierres de los martes, unos **145 días pagados al año**, más del doble del máximo legal y un récord en el comercio minorista.
+
 ## La semana de 4 días
 
 - **Islandia (2015-2019)**: ~2.500 personas, 35-36 h — **la productividad se mantuvo o subió**.

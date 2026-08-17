@@ -55,6 +55,7 @@ npm run preview      # 预览构建产物
 2. **DNS**：将 `955.life` 指向 GitHub Pages（根域名用 A/AAAA，`www` 可用 CNAME 到 `aiDennis.github.io`），并在 Pages 设置中确认 Custom domain、勾选 Enforce HTTPS。
 3. **自动部署**：推送 `main`（或手动跑 `Deploy to GitHub Pages` workflow）后，Actions 会 `npm ci` → `npm run build` → 发布 `dist/`。
 4. **验证**：Actions 跑绿后访问 `https://955.life/`；提交 sitemap（`https://955.life/sitemap.xml`）到 Search Console。
+5. **IndexNow**：每次 Pages 发布成功后，workflow 会把 sitemap 中的 URL 提交给 Bing IndexNow。密钥文件在 `https://955.life/40cdf1718a784b6ca02e012a88cd0a21.txt`。也可本地执行 `npm run indexnow`（需站点已上线）。
 
 产物是纯静态 `dist/`，也可拷到其它 CDN/主机。
 
@@ -64,6 +65,7 @@ npm run preview      # 预览构建产物
 - 每页独立 title/description/canonical/OG/Twitter Card
 - JSON-LD 结构化数据：WebSite / Article / CollectionPage
 - sitemap.xml + robots.txt（自动生成）
+- Bing IndexNow：部署后自动提交 sitemap URL
 - 关键词矩阵：955工作制 / 8小时工作制 / 双休 / 带薪年假 / 四天工作制 / 工作生活平衡 等
 
 ## 开源
