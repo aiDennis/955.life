@@ -11,6 +11,24 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-09',
+    titleZh: '多家企业中秋国庆"拼假"放 13 天：小公司与大厂都在试',
+    titleEn: 'Firms stitch 13-day Mid-Autumn + National Day breaks with paid leave',
+    descZh: '2026 年中秋、国庆双节期间，部分企业在 9 月最后三天增设带薪休假，无缝衔接一前一后的两个假期，员工享受长达 13 天连休——既有 6 人小公司，也有"民企 500 强"。带薪年休假与法定节假日组合"拼假"，正在成为企业落实休假制度的常见做法。',
+    descEn: 'During the 2026 Mid-Autumn and National Day holidays, some employers added three paid days off at the end of September to bridge the two holidays into a 13-day break — from 6-person startups to top-500 private firms. Stitching annual leave around statutory holidays is becoming a common way to make leave rights real.',
+    sourceKey: 'reports',
+    tagKey: 'flex',
+  },
+  {
+    date: '2026-08',
+    titleZh: '"上四休三"变相降薪引争议：26 万人调查近七成愿接受',
+    titleEn: 'Pay-cut "4-on-3-off" sparks debate; survey shows 69% would accept',
+    descZh: '部分企业将"上四休三"与降薪 800-1200 元捆绑，引发广泛争议。《工人日报》评论指出工时调整不应异化为向劳动者转嫁成本；律师明确薪资属核心利益，企业无权以缩短工时为由单方降薪，成都中院曾有判例支持员工。《北京日报》发起"是否接受上四休三收入降五分之一"调查，26.2 万受访者中 17.9 万人选择接受。',
+    descEn: 'Some firms tie 4-on-3-off schedules to pay cuts of ¥800-1,200, sparking backlash. Workers\' Daily warned against shifting costs onto employees; lawyers note wages are a core interest and courts (Chengdu Intermediate) have backed staff. A Beijing Daily poll: of 262,000 respondents, 179,000 said they would accept a one-fifth pay cut for a 4-day week.',
+    sourceKey: 'reports',
+    tagKey: '4day',
+  },
+  {
     date: '2026-08',
     titleZh: '胖东来回应 40 天带薪年假：全年带薪休假累计 145 天',
     titleEn: 'Pangdonglai: 40 days paid leave, 145 paid days off a year',
