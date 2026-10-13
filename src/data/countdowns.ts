@@ -10,6 +10,15 @@ export interface CountdownItem {
   key: string;
 }
 
+export const EU_FLR = {
+  /** 条例 (EU) 2024/3015 于 2024-12-13 生效 */
+  inForce: '2024-12-13',
+  /** 2027-12-14 起全面适用（条例正文固定日期，不可变更） */
+  applies: '2027-12-14',
+  /** 欧盟委员会实施指南 + 单一门户 + 风险数据库（2026-06-26 已落地） */
+  guidelines: '2026-06-26',
+};
+
 export const countdowns: CountdownItem[] = [
   { start: '2027-01-01', end: '2027-01-03', key: 'cd_newyear26' },
   { start: '2027-02-05', end: '2027-02-11', key: 'cd_cny27' },
