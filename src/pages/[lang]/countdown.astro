@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import { locales, t, type Locale } from '../../i18n/ui';
+import { countdowns } from '../../data/countdowns';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params as { lang: Locale };
+const p = (k: string) => t(lang, k);
+
+/** 假期结束次日 00:00（北京时间）视为结束：end 日期 + 1 天 */
+const endPlusOne = (iso: string) => new Date(`${iso}T00:00:00+08:00`).getTime() + 86400000;
+const startTs = (iso: string) => new Date(`${iso}T00:00:00+08:00`).getTime();
+
+const items = countdowns.map((c) => ({ ...c, startTs: startTs(c.start), endTs: endPlusOne(c.end) }));
+const now = Date.now();
+const upcoming = items.filter((i) => i.startTs > now);
+const next = upcoming[0] ?? null;
+
+const jsonLd = JSON.stringify([
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: t(lang, 'cd_t'),
+    description: t(lang, 'cd_d'),
+    inLanguage: lang,
+    url: `https://955.life/${lang}/countdown/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: t(lang, 'nav_home'), item: `https://955.life/${lang}/` },
+      { '@type': 'ListItem', position: 2, name: t(lang, 'nav_cd'), item: `https://955.life/${lang}/countdown/` },
+    ],
+  },
+]);
+---
+
+<Base title={t(lang, 'seo_cd_t')} description={t(lang, 'seo_cd_d')} lang={lang} jsonLd={jsonLd}>
+  <section class="mx-auto max-w-6xl px-4 pt-10 pb-14">
+    <div class="mb-10 reveal">
+      <h1 class="text-3xl md:text-4xl font-black tracking-tight">{p('cd_t')}</h1>
+      <p class="mt-2 text-sm" style="color: var(--ink-soft);">{p('cd_d')}</p>
+    </div>
+
+    {next && (
+      <div class="reveal mb-12 rounded-3xl border p-8 md:p-12 text-center" style="border-color: var(--line); background: var(--paper-raise);">
+        <p class="text-xs uppercase tracking-[0.2em] mb-4" style="color: var(--ink-soft);">{p('cd_title_next')}</p>
+        <h2 class="font-display text-2xl md:text-4xl font-black mb-6" data-cd-name>{p(next.key)}</h2>
+        <div class="flex items-end justify-center gap-3" data-cd-hero data-start={next.startTs} data-end={next.endTs}>
+          <span class="font-display text-7xl md:text-8xl font-black text-gradient tabular-nums" data-cd-num>{Math.max(0, Math.ceil((next.startTs - now) / 86400000))}</span>
+          <span class="text-xl md:text-2xl font-bold mb-2" data-cd-unit>{p('cd_days')}</span>
+        </div>
+        <p class="mt-4 text-sm" style="color: var(--ink-soft);" data-cd-range>
+          {next.start === next.end ? next.start : `${next.start} ~ ${next.end}`}
+        </p>
+      </div>
+    )}
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal" data-cd-list>
+      {items.map((i) => (
+        <div
+          class="rounded-2xl border p-5 flex flex-col gap-2"
+          style="border-color: var(--line); background: var(--paper-raise);"
+          data-cd-item
+          data-start={i.startTs}
+          data-end={i.endTs}
+        >
+          <h3 class="font-display font-bold text-lg">{p(i.key)}</h3>
+          <p class="text-xs tabular-nums" style="color: var(--ink-soft);">
+            {i.start === i.end ? i.start : `${i.start} ~ ${i.end}`}
+          </p>
+          <p class="mt-auto pt-2">
+            <span class="text-3xl font-black tabular-nums" data-cd-item-num>
+              {Math.max(0, Math.ceil((i.startTs - now) / 86400000))}
+            </span>
+            <span class="text-sm font-medium ml-1" style="color: var(--ink-soft);" data-cd-item-unit>{p('cd_days')}</span>
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-8 text-xs leading-relaxed reveal" style="color: var(--ink-soft);">
+      {p('cd_note')}
+      <br />
+      {p('cd_static_note')}
+    </p>
+
+    <aside class="mt-10 rounded-2xl border p-6 reveal" style="border-color: var(--line); background: var(--paper-raise);">
+      <p class="font-display font-bold text-lg mb-1">{p('cd_weekend_note')}</p>
+    </aside>
+  </section>
+</Base>
+
+<script is:inline>
+  (function () {
+    var locale = document.documentElement.lang || 'zh-CN';
+    // 与 i18n/ui.ts 的 cd_* 词条保持一致的本地化状态文案
+    var labels = {
+      'zh-CN': { days: '天', today: '就是今天', started: '假期进行中', ended: '已结束', suffix: '天后' },
+      'zh-Hant': { days: '天', today: '就是今天', started: '假期進行中', ended: '已結束', suffix: '天後' },
+      en: { days: 'days', today: 'Today!', started: 'In progress', ended: 'Over', suffix: 'days left' },
+      ja: { days: '日', today: '今日！', started: '進行中', ended: '終了', suffix: '日後' },
+      ko: { days: '일', today: '오늘!', started: '진행 중', ended: '종료', suffix: '일 후' },
+      de: { days: 'Tage', today: 'Heute!', started: 'Laufend', ended: 'Vorbei', suffix: 'Tage' },
+      es: { days: 'días', today: '¡Hoy!', started: 'En curso', ended: 'Terminado', suffix: 'días' },
+      fr: { days: 'jours', today: 'Aujourd\u2019hui !', started: 'En cours', ended: 'Terminé', suffix: 'jours' },
+    };
+    var L = labels[locale] || labels['zh-CN'];
+    var DAY = 86400000;
+    function daysUntil(ts) { return Math.ceil((ts - Date.now()) / DAY); }
+
+    // hero 卡：未开始→剩余天数；进行中→started；结束后→隐藏整个 hero
+    var hero = document.querySelector('[data-cd-hero]');
+    if (hero) {
+      var s = +hero.dataset.start, e = +hero.dataset.end;
+      var nameEl = hero.closest('div.mb-12');
+      if (Date.now() >= e) {
+        if (nameEl) nameEl.style.display = 'none';
+      } else {
+        var num = hero.querySelector('[data-cd-num]');
+        var unit = hero.querySelector('[data-cd-unit]');
+        var d = daysUntil(s);
+        if (d <= 0) { num.textContent = ''; unit.textContent = d === 0 || Date.now() >= s ? L.started : L.ended; }
+        else { num.textContent = d; unit.textContent = L.suffix; }
+      }
+    }
+
+    // 列表卡：随时间变化更新状态（过去灰显、进行中高亮、未来显示天数）
+    document.querySelectorAll('[data-cd-item]').forEach(function (el) {
+      var s = +el.dataset.start, e = +el.dataset.end;
+      var num = el.querySelector('[data-cd-item-num]');
+      var unit = el.querySelector('[data-cd-item-unit]');
+      var now = Date.now();
+      if (now >= e) { el.style.opacity = '0.45'; num.textContent = ''; unit.textContent = L.ended; }
+      else if (now >= s) { el.style.opacity = '0.75'; num.textContent = ''; unit.textContent = L.started; }
+      else { num.textContent = daysUntil(s); unit.textContent = L.suffix; }
+    });
+  })();
+</script>
