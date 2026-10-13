@@ -12,6 +12,15 @@ export interface NewsItem {
 export const newsItems: NewsItem[] = [
   {
     date: '2026-09',
+    titleZh: '"双休购"爆红后被下架：让消费者先问企业双不双休',
+    titleEn: '"Two-day-week shopping" app booms, then gets suspended',
+    descZh: '2026 年 7 月上线的微信小程序"双休购"让用户查询、点评企业的双休与加班情况，倡导"购物前先问企业双不双休，用钱包投票"。9 月初爆红，注册用户突破 15 万，双休企业获流量反馈、订单翻倍。9 月 10 日被以违反《移动互联网应用程序信息服务管理规定》为由暂停服务，团队称对相关法规"理解不够深刻"。事件将劳动条件信息不透明与休息权议题推上公共讨论（来源：腾讯新闻/新黄河、BBC 中文、星岛等）。',
+    descEn: 'Launched in July 2026, the WeChat mini-program "Shuangxiugou" let users check and rate companies\' weekend policies and overtime, urging shoppers to "vote with their wallets" for two-day-week firms. It boomed in early September — 150,000+ registered users, orders doubling for listed companies — before being suspended on Sep 10 for violating app information-service rules (sources: Tencent News/Jinhe, BBC Chinese, Sing Tao).',
+    sourceKey: 'reports',
+    tagKey: 'weekend',
+  },
+  {
+    date: '2026-09',
     titleZh: '多家企业中秋国庆"拼假"放 13 天：小公司与大厂都在试',
     titleEn: 'Firms stitch 13-day Mid-Autumn + National Day breaks with paid leave',
     descZh: '2026 年中秋、国庆双节期间，部分企业在 9 月最后三天增设带薪休假，无缝衔接一前一后的两个假期，员工享受长达 13 天连休——既有 6 人小公司，也有"民企 500 强"。带薪年休假与法定节假日组合"拼假"，正在成为企业落实休假制度的常见做法。',
