@@ -25,6 +25,7 @@ const sourceNames: Record<string, string> = {
   'cyol': { 'zh-CN': '中青报', 'zh-Hant': '中青報', en: 'China Youth Daily', ja: '中国青年報', ko: '중국청년보', de: 'China Youth Daily', es: 'China Youth Daily', fr: 'China Youth Daily' }[lang] ?? '中青报',
   'henan': { 'zh-CN': '河南省委组织部等', 'zh-Hant': '河南省委組織部等', en: 'Henan Org. Dept. et al.', ja: '河南省党委組織部など', ko: '허난성 당위 조직부 등', de: 'Organisationsabt. der Provinz Henan u. a.', es: 'Dpto. de Organización de Henan y otros', fr: 'Département de l\'Organisation du Henan et al.' }[lang] ?? '河南省委组织部等',
   'baixing': { 'zh-CN': '百姓关注', 'zh-Hant': '百姓關注', en: 'Public Focus', ja: '百姓関注', ko: '백성관주', de: 'Public Focus', es: 'Public Focus', fr: 'Public Focus' }[lang] ?? '百姓关注',
+  'stats': { 'zh-CN': '国家统计局', 'zh-Hant': '國家統計局', en: 'National Bureau of Statistics', ja: '国家統計局', ko: '국가통계국', de: 'Nationales Statistikamt', es: 'Oficina Nacional de Estadística', fr: 'Bureau national des statistiques' }[lang] ?? '国家统计局',
 };
 const tagOf = (k: string) => tagNames[k] ?? '政策';
 const sourceOf = (k: string) => sourceNames[k] ?? '';

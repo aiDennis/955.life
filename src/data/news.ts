@@ -11,6 +11,15 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-10-19',
+    titleZh: '统计局：前三季度企业就业人员周平均工时 48.3 小时，仍超法定 40 小时',
+    titleEn: 'NBS: enterprise staff averaged 48.3 hours a week in Q1-Q3 2026',
+    descZh: '2026 年 10 月 19 日，国家统计局发布前三季度国民经济运行数据：全国企业就业人员周平均工作时间为 48.3 小时，较法定每周 40 小时上限多出约 8.3 小时；同期全国城镇调查失业率平均值为 5.2%，与上年同期持平。这一数据延续了 2023 年以来周平均工时高于 48 小时的态势，也是"反内卷"与落实双休议题持续受到关注的量化背景。',
+    descEn: 'On 19 Oct 2026 the National Bureau of Statistics reported that enterprise employees averaged 48.3 working hours a week in Q1-Q3 2026 — about 8.3 hours above the statutory 40-hour cap — while the urban surveyed unemployment rate held at 5.2%. The figure continues a run of above-48-hour weeks since 2023, and is the quantitative backdrop to China\'s ongoing debate on overtime, "involution" and enforcing the two-day weekend.',
+    sourceKey: 'stats',
+    tagKey: 'policy',
+  },
+  {
     date: '2026-09',
     titleZh: '"双休购"爆红后被下架：让消费者先问企业双不双休',
     titleEn: '"Two-day-week shopping" app booms, then gets suspended',
