@@ -11,6 +11,24 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-10-17',
+    titleZh: '深圳人社局：APEC 会议周倡导企业灵活办公，统筹安排职工带薪年休假',
+    titleEn: 'Shenzhen urges flexible working and paid annual leave during APEC week',
+    descZh: '2026 年 10 月 17 日，深圳市人力资源和社会保障局发布通知，倡导全市企业在 APEC 会议当周工作日（11 月 16 日至 20 日）实行灵活工作安排：安排职工居家远程办公、统筹安排带薪年休假、确需现场岗位错峰或弹性上下班。通知同时划出权益红线——不得因灵活工作安排违法延长职工工作时间、规避加班工资给付、降低职工工资标准。',
+    descEn: 'On 17 Oct 2026 Shenzhen\'s human resources bureau urged companies to adopt flexible arrangements during APEC week (16-20 Nov): work from home, coordinate paid annual leave, and staggered or flexible hours for on-site roles. The notice also sets a red line: employers must not illegally extend working hours, dodge overtime pay or cut wages under cover of the flexible arrangement.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
+    date: '2026-10-08',
+    titleZh: '人社部：新就业形态劳动者权益保障办法征求意见，拟规定连续工作 4 小时应休息',
+    titleEn: 'MOHRSS drafts rules for gig workers: rest after 4 straight hours',
+    descZh: '2026 年 10 月 8 日，人力资源社会保障部发布《新就业形态劳动者权益保障办法（征求意见稿）》，公开征求意见至 11 月 8 日。这是我国首次以规章形式将"不完全符合确立劳动关系情形"的新就业形态劳动者纳入劳动法律制度保障。征求意见稿明确企业应合理确定并向社会公开日、周最长工作时间，制定休息办法，连续工作 4 小时应保障适当休息，不得诱导或变相诱导过度劳动，并在法定节假日支付高于正常工作时间的报酬；同时规范算法与平台劳动规则，劳动者对工作时长、考核等异议应在 48 小时内得到人工答复。',
+    descEn: 'On 8 Oct 2026 the Ministry of Human Resources and Social Security released a draft regulation on gig-worker rights for public comment (until 8 Nov) — the first set of rules to bring workers in non-standard platform employment under labour law. The draft requires firms to publish maximum daily and weekly hours, guarantee rest after four straight hours of work, avoid inducing overwork, pay above-normal rates on statutory holidays, regulate platform algorithms, and answer worker disputes on hours and assessment within 48 hours.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
     date: '2026-10-19',
     titleZh: '统计局：前三季度企业就业人员周平均工时 48.3 小时，仍超法定 40 小时',
     titleEn: 'NBS: enterprise staff averaged 48.3 hours a week in Q1-Q3 2026',
