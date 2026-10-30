@@ -11,6 +11,15 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-10-29',
+    titleZh: '深圳 APEC 周灵活办公：央企国企民企接连出方案，有企业年假接周末连休 9 天',
+    titleEn: 'Shenzhen APEC week: state and private employers line up flexible-work plans, one offers a 9-day break',
+    descZh: '深圳 10 月 17 日发出 APEC 会议周（11 月 16 日至 20 日）灵活办公倡议后，企业方案陆续落地。民企动作最快：橙子数字科技（大眼橙）10 月 20 日把 5 个工作日设为全员年假，接前后周末形成 11 月 14 日至 22 日共 9 天连休；九科信息深圳团队 11 月 17 日至 20 日全员居家；中保亚太 27 名管理人员中 18 人居家、4 人休年假；维动自动化把年度旅游提前到 11 月 13 日至 22 日，近 40 名员工及家属带薪出游、不设 KPI。10 月 25 日深圳市国资委口径下，深圳港集团、国信证券、深创投、深国际、深圳交易集团分别安排后台居家办公与 AB 角补位、带薪年假和错峰上下班；10 月 29 日华侨城、华润、招商局集团及阿里巴巴深圳园区（3000 余人）也公布弹性办公、绿色出行安排。APEC 周恰与深圳中小学秋假（11 月 17 日至 20 日）重叠，灵活办公同时缓解双职工带娃压力。深圳市律协劳动法专委会主任彭湃提示，居家办公员工仍受法律保护，企业须依法支付报酬，工作时间不得超过法定标准。（来源：深圳特区报/读特、南方都市报）',
+    descEn: 'After Shenzhen issued its flexible-work call for APEC week (16-20 Nov) on 17 Oct 2026, company plans rolled in. Private firms moved fastest: Orange Digital made all five working days company-wide annual leave on 20 Oct, joining the surrounding weekends into a nine-day break (14-22 Nov); Jiuke Information sent its whole Shenzhen team home from 17-20 Nov; at Zhongbao Asia Pacific Security 18 of 27 managers work from home and 4 took leave; Weidong Automation moved its annual staff trip to 13-22 Nov — about 40 employees and family members, paid, no KPIs. On 25 Oct the municipal SASAC reported that Shenzhen Port Group, Guosen Securities, Shenzhen Capital Group, Shenzhen International and the Shenzhen Exchange Group had each arranged back-office remote work with A/B cover, paid annual leave and staggered hours; on 29 Oct OCT, China Resources, China Merchants and Alibaba\'s 3,000-person Shenzhen campus published their own flexible-work and green-commute plans. APEC week overlaps Shenzhen\'s school autumn break (17-20 Nov), easing childcare for dual-income families. Peng Pai of the Shenzhen lawyers association\'s labour law committee reminded employers that remote staff remain protected by law: pay must be lawful and hours must stay within statutory limits. (Sources: Shenzhen Special Zone Daily / Dute, Southern Metropolis Daily)',
+    sourceKey: 'reports',
+    tagKey: 'flex',
+  },
+  {
     date: '2026-10-17',
     titleZh: '深圳人社局：APEC 会议周倡导企业灵活办公，统筹安排职工带薪年休假',
     titleEn: 'Shenzhen urges flexible working and paid annual leave during APEC week',
