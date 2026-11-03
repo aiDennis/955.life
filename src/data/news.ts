@@ -11,6 +11,15 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-10-31',
+    titleZh: '人社部前三季度通报：新就业形态保障办法征求意见 11 月 8 日截止，下一步治理欠薪冬季行动',
+    titleEn: 'MOHRSS Q1-Q3 review: gig-work rules near consultation deadline, winter wage-arrears campaign next',
+    descZh: '2026 年 10 月 31 日，人社部发布 2026 年前三季度人力资源和社会保障工作主要进展。劳动关系部分把《新就业形态劳动者权益保障办法（征求意见稿）》列为重点成果，并明确下一步将根据公开征求意见情况进一步完善该办法、指导地方合理调整最低工资标准；劳动保障监察方面将开展治理欠薪冬季行动，强化人力资源市场、新业态权益保障等问题排查。征求意见稿于 10 月 8 日发布，反馈截止 11 月 8 日，其中拟要求企业向社会公开日、周最长工作时间，保障劳动者连续工作 4 小时后得到适当休息，不得诱导或变相诱导过度劳动。',
+    descEn: 'On 31 Oct 2026 China\'s human resources ministry published its review of Q1-Q3 2026. Under labour relations it lists the draft rules on gig-worker rights as a key result and says the next steps are to finalise the draft after the public consultation, guide local governments on reasonable minimum-wage adjustments, and run a winter campaign against wage arrears with more inspections of labour markets and new employment forms. The draft was issued on 8 Oct with comments due 8 Nov; it would require firms to publish maximum daily and weekly hours, guarantee proper rest after four consecutive hours of work, and bar inducements to overwork.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
     date: '2026-10-29',
     titleZh: '深圳 APEC 周灵活办公：央企国企民企接连出方案，有企业年假接周末连休 9 天',
     titleEn: 'Shenzhen APEC week: state and private employers line up flexible-work plans, one offers a 9-day break',
@@ -18,6 +27,15 @@ export const newsItems: NewsItem[] = [
     descEn: 'After Shenzhen issued its flexible-work call for APEC week (16-20 Nov) on 17 Oct 2026, company plans rolled in. Private firms moved fastest: Orange Digital made all five working days company-wide annual leave on 20 Oct, joining the surrounding weekends into a nine-day break (14-22 Nov); Jiuke Information sent its whole Shenzhen team home from 17-20 Nov; at Zhongbao Asia Pacific Security 18 of 27 managers work from home and 4 took leave; Weidong Automation moved its annual staff trip to 13-22 Nov — about 40 employees and family members, paid, no KPIs. On 25 Oct the municipal SASAC reported that Shenzhen Port Group, Guosen Securities, Shenzhen Capital Group, Shenzhen International and the Shenzhen Exchange Group had each arranged back-office remote work with A/B cover, paid annual leave and staggered hours; on 29 Oct OCT, China Resources, China Merchants and Alibaba\'s 3,000-person Shenzhen campus published their own flexible-work and green-commute plans. APEC week overlaps Shenzhen\'s school autumn break (17-20 Nov), easing childcare for dual-income families. Peng Pai of the Shenzhen lawyers association\'s labour law committee reminded employers that remote staff remain protected by law: pay must be lawful and hours must stay within statutory limits. (Sources: Shenzhen Special Zone Daily / Dute, Southern Metropolis Daily)',
     sourceKey: 'reports',
     tagKey: 'flex',
+  },
+  {
+    date: '2026-10-25',
+    titleZh: '台湾连三周"上四休三"后，週休三日提案再被讨论：劳动部称无实施时间表',
+    titleEn: 'Taiwan\'s three straight four-day weeks revive the 4-day-week debate; ministry sees no timeline',
+    descZh: '2026 年 9 月底至 10 月初，台湾因中秋、教师节与国庆日补假，部分周休二日的上班族连续三周每周只上班四天。10 月下旬，社交平台出现"干脆改週休三日"的讨论，媒体跟进报道。公共政策网络参与平台上"推动四日工作制，每周上四天班放假三天"提案此前获 5768 人附议，劳动部于 2026 年 2 月 6 日回应，指该制度涉及企业营运成本、劳工收入、产业排班与公共服务，须审慎评估；目前没有全面实施时间表，政策方向仍是落实周休二日、鼓励劳资协商弹性工时。',
+    descEn: 'From late September to early October 2026, public holidays for Mid-Autumn Festival, Teachers\' Day and National Day gave many Taiwanese office workers three consecutive four-day weeks. In late October the experience revived calls on social media to make the short week permanent, and local media picked up the debate. An earlier petition on the public policy platform that gathered 5,768 signatures was answered by the labour ministry on 6 Feb 2026: it said a four-day week would affect employer costs, worker pay, shift scheduling and public services and needs careful review. There is no timeline for nationwide adoption; policy still focuses on enforcing the two-day weekend and encouraging flexible hours through collective bargaining.',
+    sourceKey: 'reports',
+    tagKey: '4day',
   },
   {
     date: '2026-10-17',
