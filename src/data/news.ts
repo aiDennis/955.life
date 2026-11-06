@@ -11,6 +11,24 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-11-03',
+    titleZh: '广东印发扩大消费实施方案：全面落实带薪年休假制度，年休假可与小长假连休、弹性错峰',
+    titleEn: 'Guangdong plan enforces paid annual leave, lets staff stack it onto short holidays',
+    descZh: '2026 年 11 月 3 日，广东省发展改革委印发《广东省扩大消费实施方案》（粤发改贸易〔2026〕339 号，10 月 28 日成文）。方案第 36 条"严格落实休息休假制度"提出：切实保障劳动者合法休息休假权益，全面落实带薪年休假制度，增强制度执行刚性，鼓励用人单位将年休假与小长假连休、安排弹性错峰休假；鼓励有条件的地方设置中小学春秋假；鼓励各级工会按规定将经费用于节日慰问品、职工健身、文体旅游等消费领域。这是年内继山西、天津、安徽等省份之后，又一省级层面把带薪休假落实写入促消费文件。',
+    descEn: 'On 3 Nov 2026 the Guangdong Development and Reform Commission issued the province\'s consumer-expansion plan (Yue Fa Gai Mao Yi [2026] No. 339, signed 28 Oct). Article 36, "Strictly implement the rest and leave system", requires protection of workers\' lawful rest and leave rights, full enforcement of paid annual leave with stronger compliance, and encourages employers to let staff combine annual leave with short public holidays or take flexible staggered leave. It also backs spring and autumn school breaks where conditions allow and directs union funds toward holiday gifts, fitness and cultural tourism — another provincial push to make paid leave real, following Shanxi, Tianjin, Anhui and others this year.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
+    date: '2026-11-04',
+    titleZh: '第一财经：陕西、安徽、天津等多省份发文落实带薪休假，15 省份全省推行中小学春秋假',
+    titleEn: 'First Financial: provinces move to enforce paid leave; 15 provinces adopt school autumn breaks',
+    descZh: '2026 年 11 月 4 日，第一财经报道：今年以来已有陕西、安徽、贵州、浙江、云南、山西、天津等多地发出落实带薪年休假制度、鼓励职工错峰休假的通知。山西省 4 月由省人社厅、省总工会等五部门联合发文，要求连续工作满 12 个月的职工平等享受 5 至 15 天带薪年假，杜绝歧视性、选择性安排休假；天津 7 月由市人社局等五部门发文，推进应休尽休、引导错峰休假，并提出摒弃"爱岗敬业不能休"的错误认识。报道指出，今年 7 月国务院批复的《扩大消费"十五五"规划》已明确推动修订《职工带薪年休假条例》、增强制度执行刚性；全国已有 15 个省份全省推行中小学春秋假，11 月各地开始密集放秋假，春秋假与家长带薪休假的衔接成为落地关键。',
+    descEn: 'First Financial reported on 4 Nov 2026 that Shaanxi, Anhui, Guizhou, Zhejiang, Yunnan, Shanxi and Tianjin are among the provinces that have issued notices this year on enforcing paid annual leave and encouraging staggered time off. Shanxi\'s April notice, issued by the provincial human resources department, trade unions and three other bodies, requires equal access to 5-15 paid days for anyone with 12 months of service and bars selective or discriminatory scheduling; Tianjin\'s July notice pushes full take-up and tells employers to drop the notion that dedication means never taking leave. The report notes that the State Council\'s July approval of the 15th Five-Year consumer plan calls for revising the paid annual leave regulations and tightening enforcement, and that 15 provinces now run school spring and autumn breaks — most scheduling autumn breaks in November — making it crucial to link those breaks with parents\' paid leave.',
+    sourceKey: 'reports',
+    tagKey: 'flex',
+  },
+  {
     date: '2026-10-31',
     titleZh: '人社部前三季度通报：新就业形态保障办法征求意见 11 月 8 日截止，下一步治理欠薪冬季行动',
     titleEn: 'MOHRSS Q1-Q3 review: gig-work rules near consultation deadline, winter wage-arrears campaign next',
