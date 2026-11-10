@@ -11,6 +11,15 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-11-05',
+    titleZh: '国务院办公厅发布 2027 年放假安排：春节连休 9 天，元旦、清明不调休',
+    titleEn: 'China publishes 2027 holiday calendar: nine-day Spring Festival, no make-up days for New Year or Qingming',
+    descZh: '2026 年 11 月 5 日，国务院办公厅发布《关于 2027 年部分节假日安排的通知》（国办发明电〔2026〕10 号）。具体安排为：元旦 1 月 1 日（周五）至 3 日（周日）放假 3 天；春节 2 月 5 日（农历除夕，周五）至 13 日（农历正月初八，周六）放假调休共 9 天，1 月 31 日（周日）、2 月 14 日（周日）上班；清明节 4 月 3 日（周六）至 5 日（周一）放假 3 天；劳动节 5 月 1 日（周六）至 5 日（周三）放假调休共 5 天，5 月 8 日（周六）上班；端午节 6 月 9 日（周三）、中秋节 9 月 15 日（周三）各放假 1 天；国庆节 10 月 1 日（周五）至 7 日（周四）放假调休共 7 天，9 月 26 日（周日）、10 月 9 日（周六）上班。通知同时鼓励单位和个人结合落实带薪年休假等制度，实际形成较长假期，推动错峰出行。与近年安排相比，2027 年元旦、清明均与周末自然衔接，端午、中秋恰逢周三各只放 1 天，仅有春节、劳动节、国庆节三处需要调休补班。',
+    descEn: 'On 5 Nov 2026 China\'s State Council General Office published the 2027 public holiday schedule (Guo Ban Fa Ming Dian [2026] No. 10). New Year runs 1-3 Jan (Fri-Sun), three days. Spring Festival runs 5 Feb (Lunar New Year\'s Eve, Fri) to 13 Feb (the eighth day of the first lunar month, Sat) — nine days — with 31 Jan (Sun) and 14 Feb (Sun) worked. Qingming is 3-5 Apr (Sat-Mon), three days. Labour Day is 1-5 May (Sat-Wed), five days, with 8 May (Sat) worked. Dragon Boat Festival falls on Wednesday 9 June and Mid-Autumn on Wednesday 15 Sept, one day each. National Day runs 1-7 Oct (Fri-Thu), seven days, with 26 Sept (Sun) and 9 Oct (Sat) worked. The notice also encourages employers and staff to combine public holidays with paid annual leave to create longer breaks and spread travel. Compared with recent years, New Year and Qingming join weekends naturally and only Spring Festival, Labour Day and National Day need make-up working days.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
     date: '2026-11-03',
     titleZh: '广东印发扩大消费实施方案：全面落实带薪年休假制度，年休假可与小长假连休、弹性错峰',
     titleEn: 'Guangdong plan enforces paid annual leave, lets staff stack it onto short holidays',
