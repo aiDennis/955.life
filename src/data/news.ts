@@ -11,6 +11,24 @@ export interface NewsItem {
 
 export const newsItems: NewsItem[] = [
   {
+    date: '2026-11-11',
+    titleZh: '新华社：多地最低工资标准上调，全国各省第一档月最低工资均已超 2000 元',
+    titleEn: 'Xinhua: provinces raise minimum wages, every top-tier monthly rate now above 2,000 yuan',
+    descZh: '2026 年 11 月 11 日，新华社新华视点报道：今年以来江苏、浙江、广东、山西、陕西、云南、新疆等省份已上调最低工资标准，涨幅最低 100 元、最高超 200 元；四川、贵州已就调整方案发布征求意见稿。云南自 9 月 1 日起把一、二、三类地区月最低工资标准分别由 2170 元、2020 元、1870 元提高到 2270 元、2120 元、1970 元。从调整后的水平看，全国各省、自治区、直辖市第一档月最低工资标准均已超过 2000 元。除法定底线外，企业工资指导线同步发挥引导作用，山西 2026 年 8 月将全省企业工资增长基准线定为 7%。报道援引 2026 年政府工作报告提出的城乡居民增收计划，以及《人力资源和社会保障事业发展十五五规划》关于完善企业工资决定机制、稳步扩大中等收入群体的要求；受访家政企业负责人表示，标准上调短期不构成涨薪压力，但会抬高临时用工报酬与基础福利的规范底线。',
+    descEn: 'On 11 Nov 2026 Xinhua reported that Jiangsu, Zhejiang, Guangdong, Shanxi, Shaanxi, Yunnan and Xinjiang are among provinces that have raised minimum wages this year, by 100 to more than 200 yuan, while Sichuan and Guizhou have published draft adjustments for public comment. Yunnan lifted its three tiers from 2,170, 2,020 and 1,870 yuan to 2,270, 2,120 and 1,970 yuan a month from 1 September. After the round, every province, autonomous region and municipality has a top-tier monthly minimum above 2,000 yuan. Beyond the legal floor, wage guidance lines steer pay growth: Shanxi set a 7 percent benchmark for enterprise wage increases in August 2026. The report ties the moves to the household income plan in the 2026 government work report and to the 15th Five-Year human resources plan, which calls for refining wage-setting mechanisms and expanding the middle-income group. A domestic-services employer quoted in the piece said the higher floor creates no immediate pay pressure but sets a firmer baseline for temporary staff pay and basic benefits.',
+    sourceKey: 'reports',
+    tagKey: 'policy',
+  },
+  {
+    date: '2026-11-09',
+    titleZh: '台湾修正裁处罚锾共通性原则：纳入最低工资法，3 年内再犯按次累加罚款并公开',
+    titleEn: 'Taiwan tightens labour fines: minimum wage law added, repeat breaches escalate within three years',
+    descZh: '2026 年 11 月 9 日，台湾劳动部修正发布《违反劳动基准法及最低工资法裁处罚锾共通性原则》，将最低工资法纳入适用范围，增订按次累加裁罚金额及网站资讯公开机制，2027 年 1 月 1 日生效。修正后，上市柜公司、实收资本额逾 1 亿元或医学中心等特定对象，若违反最低工资或工时等重要规定，罚锾以新台币 5 万元为起算最低额；再次违反同一条文的计算周期统一为 3 年，即 3 年内再次违反同条规定的次数应计入按次累加金额，且 3 年内违反劳动基准法基本工资规定与违反最低工资法视为违反同一规定；各地方政府须将其裁罚审酌标准（含按次累加金额）公开于官方网站，由劳动部官网彙整各县市链接。',
+    descEn: 'On 9 Nov 2026 the labour ministry in Taiwan amended its common principles for fines under the Labour Standards Act and the Minimum Wage Act, bringing the minimum wage law into scope, adding escalating per-offence penalties and a website disclosure mechanism, effective 1 January 2027. Listed companies, firms with paid-in capital above NT$100 million and medical centres must now start fines at NT$50,000 for breaches of minimum wage or working time rules. Repeat breaches of the same provision are counted over a uniform three-year window and added to the fine, and breaches of the basic wage clause in the Labour Standards Act count as the same provision as breaches of the Minimum Wage Act within that period. Local governments must publish their penalty criteria, including the escalation amounts, with the ministry linking every city and county page from its own site.',
+    sourceKey: 'gov',
+    tagKey: 'policy',
+  },
+  {
     date: '2026-11-05',
     titleZh: '国务院办公厅发布 2027 年放假安排：春节连休 9 天，元旦、清明不调休',
     titleEn: 'China publishes 2027 holiday calendar: nine-day Spring Festival, no make-up days for New Year or Qingming',
